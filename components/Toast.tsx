@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { toast as sonnerToast } from 'sonner';
-import { neueFont, delaFont } from '@/app/fonts/fonts';
+import { neueFont } from '@/app/fonts/fonts';
 
 export default function toast(toast: Omit<ToastProps, 'id'>) {
   return sonnerToast.custom((id) => (
@@ -18,7 +18,7 @@ function Toast(props: ToastProps) {
   const { title } = props;
 
   return (
-    <div className="h-[66px] w-[320px] bg-[#FBBB3F] flex flex-col justify-center items-center rounded-full">
+    <div className="h-[60px] w-[270px] bg-[#FBBB3F] flex flex-col justify-center items-center rounded-full">
       <div className={`text-[#FFF8F1] ` + neueFont.className}>
         { title }
       </div>
