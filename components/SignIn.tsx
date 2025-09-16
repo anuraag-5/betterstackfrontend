@@ -47,7 +47,7 @@ const SignUp = () => {
 
       if (data.jwt.length > 0) {
         toast({ title: `✅ Logged In`, description: "" });
-        router.replace("/dashboard");
+        router.replace("/dashboard/projects");
         return;
       }
 
