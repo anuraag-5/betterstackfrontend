@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { neueFont } from "@/app/fonts/fonts";
 
 const SignUp = () => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const SignUp = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3001/api/user/signin",
+        "http://192.168.1.7:3001/api/user/signin",
         { username: email, password },
         {
           withCredentials: true,
@@ -59,7 +60,7 @@ const SignUp = () => {
 
   return (
     <div className="xl:max-w-[45vw] min-h-screen flex flex-col justify-center px-4 md:px-12">
-      <div className="text-[54px] text-[#FBBB3F] mb-15">Sign In</div>
+      <div className={ neueFont.className + " text-[54px] text-[#FBBB3F] mb-15"}>Sign In</div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -101,7 +102,7 @@ const SignUp = () => {
             )}
           />
           <div className="w-full max-w-[700px] flex justify-center mt-15">
-            <Button type="submit" className="form-submit-button cursor-pointer">
+            <Button type="submit" className={ neueFont.className + " form-submit-button cursor-pointer" }>
               Sign In
             </Button>
           </div>

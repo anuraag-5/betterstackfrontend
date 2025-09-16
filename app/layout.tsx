@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
-import { neueFont } from "@/app/fonts/fonts";
+import { delaFont, neueFont, poppinsFont } from "@/app/fonts/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${neueFont.className} antialiased`}
+        className={`${ poppinsFont.className } antialiased`}
       >
         {children}
         <Toaster position="top-center" />

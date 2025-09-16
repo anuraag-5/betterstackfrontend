@@ -17,9 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { signUpUser } from "@/lib/auths";
 import { useRouter } from "next/navigation";
+import { neueFont } from "@/app/fonts/fonts";
 
 const SignUp = () => {
-
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,19 +35,26 @@ const SignUp = () => {
     const passsword = values.password;
 
     const res = await signUpUser(email, passsword);
-  
-    if (res.success){
-      toast({ title: "✅ Account Created", description: "You can now login"})
+
+    if (res.success) {
+      toast({ title: "✅ Account Created", description: "You can now login" });
       router.replace("/signin");
       return;
     }
 
-    toast({ title: "❌ Account not Created", description: "Try again sometime"});
+    toast({
+      title: "❌ Account not Created",
+      description: "Try again sometime",
+    });
   }
 
   return (
     <div className="xl:max-w-[45vw] min-h-screen flex flex-col justify-center px-4 md:px-12">
-      <div className="text-[54px] text-[#FBBB3F] mb-15">Sign Up</div>
+      <div
+        className={neueFont.className + " text-[54px] text-[#FBBB3F] mb-15 "}
+      >
+        Sign Up
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -89,7 +96,12 @@ const SignUp = () => {
             )}
           />
           <div className="w-full max-w-[700px] flex justify-center mt-15">
-            <Button type="submit" className="form-submit-button cursor-pointer">
+            <Button
+              type="submit"
+              className={
+                neueFont.className + " form-submit-button cursor-pointer "
+              }
+            >
               Sign Up
             </Button>
           </div>
