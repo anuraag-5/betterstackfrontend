@@ -4,7 +4,7 @@ import z from "zod";
 import toast from "./Toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { formSchema } from "@/lib/types";
+import { formSchemaSignUp } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,19 +22,21 @@ import { neueFont } from "@/app/fonts/fonts";
 const SignUp = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formSchemaSignUp>>({
+    resolver: zodResolver(formSchemaSignUp),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchemaSignUp>) {
+    const name = values.name;
     const email = values.email;
     const passsword = values.password;
 
-    const res = await signUpUser(email, passsword);
+    const res = await signUpUser(email, passsword, name);
 
     if (res.success) {
       toast({ title: "✅ Account Created", description: "You can now login" });
@@ -43,7 +45,7 @@ const SignUp = () => {
     }
 
     toast({
-      title: "❌ Account not Created",
+      title: "Account not Created",
       description: "Try again sometime",
     });
   }
@@ -57,6 +59,25 @@ const SignUp = () => {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <div className="bg-[#ffffff] shad-form-item w-full min-w-[200px] max-w-[700px]">
+                  <FormLabel className="shad-form-label">Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="abc@xyz.com"
+                      {...field}
+                      className="shad-no-focus shad-input"
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className="shad-form-message" />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="email"

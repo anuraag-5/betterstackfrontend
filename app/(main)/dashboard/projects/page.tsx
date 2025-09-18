@@ -1,4 +1,4 @@
-import React from 'react'
+"use client";
 
 const Page = () => {
   //TODO: Check if user has projects created, conditionally render projects or render create projects.

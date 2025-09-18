@@ -2,10 +2,9 @@
 
 import z from "zod";
 import toast from "./Toast";
-import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { formSchema } from "@/lib/types";
+import { formSchemaSignIn } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,49 +17,41 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { neueFont } from "@/app/fonts/fonts";
+import { signInUser } from "@/lib/auths";
 
 const SignUp = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formSchemaSignIn>>({
+    resolver: zodResolver(formSchemaSignIn),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchemaSignIn>) {
     const email = values.email;
     const password = values.password;
 
-    try {
-      const res = await axios.post(
-        "http://192.168.1.7:3001/api/user/signin",
-        { username: email, password },
-        {
-          withCredentials: true,
-        }
-      );
+    const res = await signInUser(email, password);
 
-      const data = (await res.data) as { jwt: string };
-
-      if (data.jwt.length > 0) {
-        toast({ title: `✅ Logged In`, description: "" });
-        router.replace("/dashboard/projects");
-        return;
-      }
-
-      toast({ title: `❌ User not found`, description: "" });
-      router.push("/signup");
-    } catch (_error) {
-      toast({ title: `❌ Internal server error`, description: "" });
+    if (res.success) {
+      toast({ title: `✅ Logged In`, description: "" });
+      localStorage.setItem("jwt", res.jwt);
+      router.replace("/dashboard/projects");
+      return;
     }
+
+    toast({ title: res.jwt, description: "" });
+    return;
   }
 
   return (
     <div className="xl:max-w-[45vw] min-h-screen flex flex-col justify-center px-4 md:px-12">
-      <div className={ neueFont.className + " text-[54px] text-[#FBBB3F] mb-15"}>Sign In</div>
+      <div className={neueFont.className + " text-[54px] text-[#FBBB3F] mb-15"}>
+        Sign In
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -102,7 +93,12 @@ const SignUp = () => {
             )}
           />
           <div className="w-full max-w-[700px] flex justify-center mt-15">
-            <Button type="submit" className={ neueFont.className + " form-submit-button cursor-pointer" }>
+            <Button
+              type="submit"
+              className={
+                neueFont.className + " form-submit-button cursor-pointer"
+              }
+            >
               Sign In
             </Button>
           </div>
