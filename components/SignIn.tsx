@@ -39,7 +39,7 @@ const SignUp = () => {
     if (res.success) {
       toast({ title: `✅ Logged In`, description: "" });
       localStorage.setItem("jwt", res.jwt);
-      router.replace("/dashboard/projects");
+      router.replace("/projects");
       return;
     }
 
@@ -85,6 +85,7 @@ const SignUp = () => {
                       placeholder="@@@@"
                       {...field}
                       className="shad-no-focus shad-input"
+                      type="password"
                     />
                   </FormControl>
                 </div>

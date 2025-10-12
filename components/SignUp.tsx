@@ -109,6 +109,7 @@ const SignUp = () => {
                       placeholder="@@@@"
                       {...field}
                       className="shad-no-focus shad-input"
+                      type="password"
                     />
                   </FormControl>
                 </div>
