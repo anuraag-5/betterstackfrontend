@@ -9,6 +9,7 @@ type User = {
 
 type Website = {
   domain: string;
+  about: string;
   isSnippetAdded: boolean;
 }
 
@@ -63,7 +64,8 @@ const getActualWebsites = async (jwt: string) => {
       url: string,
       user_id: string,
       time_added: Date,
-      is_snippet_added: boolean
+      is_snippet_added: boolean,
+      about: string
     }[],
     success: boolean
   }
@@ -73,7 +75,7 @@ const getActualWebsites = async (jwt: string) => {
   }
 
   const websites = data.websites.map((w) => {
-    const website: Website = { domain: w.url, isSnippetAdded: w.is_snippet_added }
+    const website: Website = { domain: w.url, isSnippetAdded: w.is_snippet_added, about: w.about }
     return website; 
   })
 

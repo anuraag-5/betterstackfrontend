@@ -18,3 +18,14 @@ export type User = {
   name: string;
   email: string;
 };
+
+export const formSchemaAddWebsite = z.object({
+  domain: z
+    .string()
+    .min(3, "Domain must be at least 3 characters.")
+    .max(32, "Domain must be at most 32 characters."),
+  about: z
+    .string()
+    .min(20, "Description must be at least 20 characters.")
+    .max(40, "Description must be at most 30 characters."),
+})
