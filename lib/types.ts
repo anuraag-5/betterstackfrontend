@@ -14,11 +14,6 @@ export const formSchemaSignIn = z.object({
   password: z.string(),
 });
 
-export type User = {
-  name: string;
-  email: string;
-};
-
 export const formSchemaAddWebsite = z.object({
   domain: z
     .string()
@@ -29,3 +24,14 @@ export const formSchemaAddWebsite = z.object({
     .min(20, "Description must be at least 20 characters.")
     .max(40, "Description must be at most 30 characters."),
 })
+
+
+export type User = {
+  name: string;
+  email: string;
+};
+
+export type HourlyView = {
+  hour: string;
+  views: number;
+}

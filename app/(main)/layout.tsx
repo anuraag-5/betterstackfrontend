@@ -18,7 +18,8 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
 
     getUser(token).then((user) => {
         if(!user.success) {
-          router.replace("/signin")
+          localStorage.removeItem("jwt");
+          return router.replace("/signin")
         }
         setUser({ name: user.name, email: user.email, id: user.id });
     }, () => {

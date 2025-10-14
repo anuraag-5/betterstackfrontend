@@ -20,7 +20,7 @@ const Projects = () => {
         {websites?.map((w) => (
           <Link
             key={w.domain}
-            href={`/project/${w.domain}`}
+            href={`/project/${w.domain}/dashboard`}
             className="cursor-pointer"
           >
             <div className="h-[160px] flex flex-col bg-[#25221D] justify-evenly px-9 rounded-2xl">
