@@ -35,3 +35,8 @@ export type HourlyView = {
   hour: string;
   views: number;
 }
+
+export type DailyView = {
+  day: string;
+  views: number;
+}

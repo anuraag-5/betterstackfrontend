@@ -44,3 +44,19 @@ export const getWebsiteHourlyViews = async (website: string, userId: string) => 
         return { data: null, success: false }
     }
 }
+
+export const getWebsiteDailyViews = async (website: string, userId: string) => {
+    try {
+        const res = await axios.post("http://localhost:3001/api/website/daily", {
+            user_id: userId,
+            website
+        });
+
+        return (await res.data) as { data: {
+            day: string,
+            views: number
+        }[] | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}

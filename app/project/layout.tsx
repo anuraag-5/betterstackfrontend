@@ -31,7 +31,7 @@ const ProjectLayout = ({ children }: { children: ReactNode }) => {
     init();
   }, [router, getUser, getWebsites, setUser, setWebsites]);
   return (
-    <div className="text-black bg-linear-to-b from-[#252522] from-0% to-[#151514] to-100% min-h-screen flex flex-col justify-center items-center">
+    <div className="text-black bg-[#262626] min-h-screen flex flex-col justify-center items-center">
       {children}
     </div>
   );
