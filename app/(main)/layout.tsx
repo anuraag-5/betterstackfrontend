@@ -1,9 +1,9 @@
 "use client";
 
-import ProjectsNavbar from '@/components/ProjectsNavbar';
 import { useUserStore } from '@/lib/userStore';
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Navbar from '@/components/Navbar';
 
 const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
@@ -32,8 +32,8 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   }, [ router, getUser, getWebsites, setUser, setWebsites ]);
   
   return (
-    <section className='min-h-screen bg-linear-to-b from-[#3D3D37] from-0% to-[#2A2A25] to-100% flex flex-col items-center 2xl:px-45 xl:px-24 px-14'>
-        <ProjectsNavbar />
+    <section className='h-screen w-screen bg-black py-3 flex'>
+      <Navbar />
         { children }
     </section>
   )
