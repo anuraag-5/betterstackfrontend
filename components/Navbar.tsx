@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +10,16 @@ const Navbar = () => {
   const [open, setOpen] = useState(true);
   const [width, setWidth] = useState(768);
   const [currentTab, setCurrentTab] = useState(usePathname());
+  const router = useRouter();
   const handleMenuToggle = () => setOpen((initialValue) => !initialValue);
+  const handleTabChange = (tab: string) => {
+    setCurrentTab(tab)
+    router.push(tab);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    router.replace("/signup");
+  } 
   useEffect(() => {
     const findWidth = () => setWidth(window.innerWidth);
     findWidth()
@@ -48,8 +58,9 @@ const Navbar = () => {
                   (currentTab == "/projects"
                     ? "bg-[#333333] "
                     : "bg-transparent ") +
-                  " rounded-lg flex items-center w-full flex-start gap-3 py-3 px-4"
+                  " rounded-lg flex items-center w-full flex-start gap-3 py-3 px-4 cursor-pointer"
                 }
+                onClick={() => handleTabChange("/projects")}
               >
                 <Image
                   src="/images/overview-icon-black.png"
@@ -64,8 +75,9 @@ const Navbar = () => {
                 (currentTab == "/settings"
                   ? "bg-[#333333] "
                   : "bg-transparent ") +
-                " rounded-lg flex w-full flex-start gap-3 py-3 px-4"
+                " rounded-lg flex w-full flex-start gap-3 py-3 px-4 cursor-pointer"
               }
+              onClick={() => handleTabChange("/settings")}
               >
                 <Image
                   src="/images/settings-icon-white.svg"
@@ -85,7 +97,9 @@ const Navbar = () => {
                     <div className="text-[8px] lg:text-[10px] text-[#A0A0A0]">anuraaag51@gmail.com</div>
                 </div>
             </div>
-            <div className="flex gap-3 py-3 px-4">
+            <div className="flex gap-3 py-3 px-4 cursor-pointer"
+            onClick={handleLogout}
+            >
                 <Image 
                 src="/images/logout-icon.png"
                 alt=""
@@ -114,8 +128,9 @@ const Navbar = () => {
                   (currentTab == "/projects"
                     ? "bg-[#333333] "
                     : "bg-transparent ") +
-                  " rounded-md p-3"
+                  " rounded-md p-3 cursor-pointer"
                 }
+                onClick={() => handleTabChange("/projects")}
               >
                 <Image
                   src="/images/overview-icon-black.png"
@@ -129,8 +144,9 @@ const Navbar = () => {
                 (currentTab == "/settings"
                   ? "bg-[#333333] "
                   : "bg-transparent ") +
-                " rounded-md p-3"
+                " rounded-md p-3 cursor-pointer"
               }
+              onClick={() => handleTabChange("/settings")}
               >
                 <Image
                   src="/images/settings-icon-white.svg"
@@ -148,6 +164,8 @@ const Navbar = () => {
               alt=""
               width={25}
               height={25}
+              className="cursor-pointer"
+              onClick={handleLogout}
               />
           </div>
         </motion.div>

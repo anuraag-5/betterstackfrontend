@@ -1,12 +1,14 @@
 "use client";
 
 import { useUserStore } from '@/lib/userStore';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import * as motion from "motion/react-client";
 import Navbar from '@/components/Navbar';
 
 const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const [ loading, setLoading ] = useState(true);
   const { getUser, getWebsites, setUser, setWebsites } = useUserStore();
 
   useEffect(() => {
@@ -25,7 +27,10 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
     }, () => {
       return router.replace('/signin');
     });
-    getWebsites(token).then((w) => setWebsites(w), () => {
+    getWebsites(token).then((w) => {
+      setWebsites(w)
+      setLoading(false);
+    }, () => {
       return router.replace('/signin');
     });
 
@@ -34,7 +39,22 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   return (
     <section className='h-screen w-screen bg-black py-3 flex'>
       <Navbar />
-        { children }
+        { loading ? (
+          <motion.div initial={{
+            opacity: 0
+          }}
+          animate={{
+            opacity: 1
+          }}
+          transition={{
+            duration: 0.3,
+            repeat: -1
+          }} 
+          className='h-[380px] w-[350px] bg-[#767676] rounded-4xl'
+          >
+
+          </motion.div>
+        ): children }
     </section>
   )
 }
