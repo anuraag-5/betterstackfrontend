@@ -31,6 +31,11 @@ export type User = {
   email: string;
 };
 
+export type MinuteView = {
+  minute: string,
+  views: number
+}
+
 export type HourlyView = {
   hour: string;
   views: number;
