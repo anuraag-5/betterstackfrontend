@@ -35,7 +35,7 @@ export const getWebsiteHourlyViews = async (website: string, userId: string) => 
         const res = await axios.post("http://localhost:3001/api/website/hourly", {
             user_id: userId,
             website,
-            hour: "24 hours"
+            hour: "24 hour"
         });
 
         return (await res.data) as { data: HourlyView[] | null, success: boolean };

@@ -1,88 +1,116 @@
 "use client";
 
-import { DailyView, HourlyView } from "@/lib/types";
-import { Area, Tooltip, AreaChart, XAxis, YAxis } from "recharts";
+import { DailyView, HourlyView, MinuteView } from "@/lib/types";
+import { Area, Tooltip, AreaChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
-const AreaChartsPerHour = ({
-  hourlyViews,
-  dailyViews,
-}: {
+type Props = {
+  minuteViews: MinuteView[] | null;
   hourlyViews: HourlyView[] | null;
   dailyViews: DailyView[] | null;
-}) => {
+};
+
+const AreaCharts = ({ minuteViews, hourlyViews, dailyViews }: Props) => {
+  const minuteData =
+    minuteViews?.map((d) => ({
+      time: d.minute,
+      views: d.views,
+    })) ?? [];
+
   const hourlyData =
     hourlyViews?.map((d) => ({
-      hour: d.hour,
-      Views: d.views,
-      amt: 1400,
+      time: d.hour,
+      views: d.views,
     })) ?? [];
 
   const dailyData =
     dailyViews?.map((d) => ({
-      day: d.day,
-      Views: d.views,
-      amt: 1400,
+      time: d.day,
+      views: d.views,
     })) ?? [];
 
-  const isHourly = hourlyData.length > 0;
+  // Pick best available data automatically
+  const data =
+    minuteData.length > 0
+      ? minuteData
+      : hourlyData.length > 0
+      ? hourlyData
+      : dailyData;
+
+  const mode =
+    minuteData.length > 0
+      ? "minute"
+      : hourlyData.length > 0
+      ? "hour"
+      : "day";
 
   return (
-    <div>
-      <AreaChart
-        width={730}
-        height={300}
-        data={isHourly ? hourlyData : dailyData}
-        margin={{ top: 10, right: 30, left: 0, bottom: 20 }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#DEC6FF" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#C499FF" stopOpacity={0} />
-          </linearGradient>
-        </defs>
+    <div style={{ width: "70%", height: 320 }}>
+      <ResponsiveContainer>
+        <AreaChart
+          data={data}
+          margin={{ top: 10, right: 30, left: 0, bottom: 20 }}
+        >
+          <defs>
+            <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#DEC6FF" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#C499FF" stopOpacity={0} />
+            </linearGradient>
+          </defs>
 
-        <XAxis
-          dataKey={isHourly ? "hour" : "day"}
-          interval={"preserveStartEnd"}
-          tickFormatter={(value) =>
-            isHourly
-              ? new Date(value).toLocaleTimeString([], {
+          <XAxis
+            dataKey="time"
+            tickMargin={16}
+            tick={{ fill: "#7A6A9E" }}
+            tickLine={{ stroke: "#7A6A9E" }}
+            axisLine={{ stroke: "#7A6A9E" }}
+            tickFormatter={(value) => {
+              const date = new Date(value);
+
+              if (mode === "minute") {
+                return date.toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
-                })
-              : new Date(value).toLocaleDateString([], {
-                  month: "short",
-                  day: "numeric",
-                })
-          }
-          tickMargin={16}
-          tick={{ fill: "#7A6A9E" }} // tick label color
-          tickLine={{ stroke: "#7A6A9E" }} // tick line color
-          axisLine={{ stroke: "#7A6A9E" }}
-        />
+                });
+              }
 
-        <YAxis
-          tickMargin={16}
-          tick={{ fill: "#7A6A9E" }} // tick label color
-          tickLine={{ stroke: "#7A6A9E" }} // tick line color
-          axisLine={{ stroke: "#7A6A9E" }} // (optional) axis line color
-        />
-        <Tooltip
-          labelClassName="text-[#FBBB3F]"
-          contentStyle={{ backgroundColor: "#6b7280" }}
-          itemStyle={{ color: "pink" }}
-        />
+              if (mode === "hour") {
+                return date.toLocaleTimeString([], {
+                  hour: "2-digit",
+                });
+              }
 
-        <Area
-          type="monotone"
-          dataKey="Views"
-          stroke="#C499FF"
-          fillOpacity={1}
-          fill="url(#colorUv)"
-        />
-      </AreaChart>
+              return date.toLocaleDateString([], {
+                month: "short",
+                day: "numeric",
+              });
+            }}
+          />
+
+          <YAxis
+            tickMargin={16}
+            tick={{ fill: "#7A6A9E" }}
+            tickLine={{ stroke: "#7A6A9E" }}
+            axisLine={{ stroke: "#7A6A9E" }}
+          />
+
+          <Tooltip
+            labelClassName="text-[#FBBB3F]"
+            contentStyle={{ backgroundColor: "#6b7280" }}
+            itemStyle={{ color: "white" }}
+            formatter={(value) => [`${value} views`, ""]}
+          />
+
+          <Area
+            type="monotone"
+            dataKey="views"
+            stroke="#C499FF"
+            fillOpacity={1}
+            fill="url(#colorViews)"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </div>
   );
 };
 
-export default AreaChartsPerHour;
+export default AreaCharts;
