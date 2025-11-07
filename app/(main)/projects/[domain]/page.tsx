@@ -12,6 +12,7 @@ import * as motion from "motion/react-client";
 import CodeBlock from "@/components/Code";
 import Image from "next/image";
 import AreaCharts from "@/components/AreaChart";
+import PagesTable from "@/components/PagesTable";
 
 enum GraphType {
   LAST_HOUR = "Last Hour",
@@ -44,10 +45,13 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const [lastHourData, setLastHourData] = useState<MinuteView[]>([]);
   const [lastDayData, setLastDayData] = useState<HourlyView[]>([]);
   const [lastDailyData, setLastDailyData] = useState<DailyView[]>([]);
-  const [ isTabOpen, setIsTabOpen ] = useState(false);
+  const [isTabOpen, setIsTabOpen] = useState(false);
 
   const handleTabChange = (tab: string) => setSelectTabType(tab);
-  const toggleTabType = (tab: GraphType) => {setSelectedGraphType(tab); setIsTabOpen(false) };
+  const toggleTabType = (tab: GraphType) => {
+    setSelectedGraphType(tab);
+    setIsTabOpen(false);
+  };
   const toggleOpen = () => setIsTabOpen((open) => !open);
 
   useEffect(() => {
@@ -124,22 +128,39 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
               <div className="flex gap-3 items-center mb-5">
                 <div>Filter by :</div>
                 <div className="relative flex gap-4 items-center  bg-[#262626] px-3 py-1 rounded-md">
-                  <div className="text-[#C499FF] text-[14px] font-medium min-w-[80px]">{ selectedGraphType }</div>
-                  <Image 
-                  src="/images/arrow-down.svg"
-                  alt=""
-                  width={9}
-                  height={15}
-                  onClick={toggleOpen}
-                  className="cursor-pointer"
+                  <div className="text-[#C499FF] text-[14px] font-medium min-w-[80px]">
+                    {selectedGraphType}
+                  </div>
+                  <Image
+                    src="/images/arrow-down.svg"
+                    alt=""
+                    width={9}
+                    height={15}
+                    onClick={toggleOpen}
+                    className="cursor-pointer"
                   />
-                  {
-                    isTabOpen ? <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
-                      <div className="border-b border-gray-400 p-2 cursor-pointer" onClick={() => toggleTabType(GraphType.LAST_HOUR)}>Last Hour</div>
-                      <div className="border-b border-gray-400 p-2 cursor-pointer" onClick={() => toggleTabType(GraphType.LAST_DAY)}>Last Day</div>
-                      <div className="pt-2 pl-2 cursor-pointer" onClick={() => toggleTabType(GraphType.LAST_MONTH)}>Last Month</div>
-                    </div> : null
-                  }
+                  {isTabOpen ? (
+                    <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
+                      <div
+                        className="border-b border-gray-400 p-2 cursor-pointer"
+                        onClick={() => toggleTabType(GraphType.LAST_HOUR)}
+                      >
+                        Last Hour
+                      </div>
+                      <div
+                        className="border-b border-gray-400 p-2 cursor-pointer"
+                        onClick={() => toggleTabType(GraphType.LAST_DAY)}
+                      >
+                        Last Day
+                      </div>
+                      <div
+                        className="pt-2 pl-2 cursor-pointer"
+                        onClick={() => toggleTabType(GraphType.LAST_MONTH)}
+                      >
+                        Last Month
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div>
@@ -163,7 +184,9 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                   />
                 )}
               </div>
-              <div> Table </div>
+              <div>
+                <PagesTable domain={domainName} />
+              </div>
             </div>
           ) : (
             <div>

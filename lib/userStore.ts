@@ -16,8 +16,10 @@ type Website = {
 type UserStore = {
   user: User | null;
   websites: Website[] | null;
+  currentWebsite: Website | null;
   setUser: (user: User) => void;
   setWebsites: (websites: Website[]) => void;
+  setCurrentWebsite: (website: Website) => void;
   getUser: (jwt: string) => Promise<{
     id: string;
     name: string;
@@ -85,8 +87,10 @@ const getActualWebsites = async (jwt: string) => {
 export const useUserStore = create<UserStore>((set) => ({
   user: null,
   websites: null,
+  currentWebsite: null,
   setUser: (user) => set({ user }),
   setWebsites: (websites) => set({websites}),
+  setCurrentWebsite: (website) => set({currentWebsite: website}),
   getUser: async (jwt) => await getActualUser(jwt),
   getWebsites: async (jwt) => await getActualWebsites(jwt),
   clearUser: () => set({ user: null }),
