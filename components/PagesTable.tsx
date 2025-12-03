@@ -6,8 +6,15 @@ export type PageView = {
   total_views: number;
 };
 
+export type UniqueUsers = {
+  unique_users: number;
+}
+
+export type TotalViews = {
+  total_views: number;
+}
+
 const PagesTable = ( { domain } : { domain: string }) => {
-  console.log(domain);
   const [ data, setData ] = useState<PageView[]>([]);
   const [ loading, setLoading ] = useState(true);
 

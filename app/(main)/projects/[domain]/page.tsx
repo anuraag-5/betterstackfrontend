@@ -13,6 +13,7 @@ import CodeBlock from "@/components/Code";
 import Image from "next/image";
 import AreaCharts from "@/components/AreaChart";
 import PagesTable from "@/components/PagesTable";
+import Overview from "@/components/Overview";
 
 enum GraphType {
   LAST_HOUR = "Last Hour",
@@ -123,90 +124,96 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
           </div>
         </div>
         <div className="flex-1 bg-[#181818] rounded-4xl pt-10 pb-8 px-12">
-          {website[0].isSnippetAdded ? (
-            <div className="flex flex-col gap-5">
-              <div className="flex gap-3 items-center mb-5">
-                <div>Filter by :</div>
-                <div className="relative flex gap-4 items-center  bg-[#262626] px-3 py-1 rounded-md">
-                  <div className="text-[#C499FF] text-[14px] font-medium min-w-[80px]">
-                    {selectedGraphType}
-                  </div>
-                  <Image
-                    src="/images/arrow-down.svg"
-                    alt=""
-                    width={9}
-                    height={15}
-                    onClick={toggleOpen}
-                    className="cursor-pointer"
-                  />
-                  {isTabOpen ? (
-                    <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
-                      <div
-                        className="border-b border-gray-400 p-2 cursor-pointer"
-                        onClick={() => toggleTabType(GraphType.LAST_HOUR)}
-                      >
-                        Last Hour
-                      </div>
-                      <div
-                        className="border-b border-gray-400 p-2 cursor-pointer"
-                        onClick={() => toggleTabType(GraphType.LAST_DAY)}
-                      >
-                        Last Day
-                      </div>
-                      <div
-                        className="pt-2 pl-2 cursor-pointer"
-                        onClick={() => toggleTabType(GraphType.LAST_MONTH)}
-                      >
-                        Last Month
-                      </div>
+          {selectedTabType == "analysis" ? (
+            website[0].isSnippetAdded ? (
+              <div className="flex flex-col gap-5">
+                <div className="flex gap-3 items-center mb-5">
+                  <div>Filter by :</div>
+                  <div className="relative flex gap-4 items-center  bg-[#262626] px-3 py-1 rounded-md">
+                    <div className="text-[#C499FF] text-[14px] font-medium min-w-[80px]">
+                      {selectedGraphType}
                     </div>
-                  ) : null}
+                    <Image
+                      src="/images/arrow-down.svg"
+                      alt=""
+                      width={9}
+                      height={15}
+                      onClick={toggleOpen}
+                      className="cursor-pointer"
+                    />
+                    {isTabOpen ? (
+                      <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
+                        <div
+                          className="border-b border-gray-400 p-2 cursor-pointer"
+                          onClick={() => toggleTabType(GraphType.LAST_HOUR)}
+                        >
+                          Last Hour
+                        </div>
+                        <div
+                          className="border-b border-gray-400 p-2 cursor-pointer"
+                          onClick={() => toggleTabType(GraphType.LAST_DAY)}
+                        >
+                          Last Day
+                        </div>
+                        <div
+                          className="pt-2 pl-2 cursor-pointer"
+                          onClick={() => toggleTabType(GraphType.LAST_MONTH)}
+                        >
+                          Last Month
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                <div>
+                  {selectedGraphType == GraphType.LAST_HOUR ? (
+                    <AreaCharts
+                      minuteViews={lastHourData}
+                      hourlyViews={null}
+                      dailyViews={null}
+                    />
+                  ) : selectedGraphType == GraphType.LAST_DAY ? (
+                    <AreaCharts
+                      minuteViews={null}
+                      hourlyViews={lastDayData}
+                      dailyViews={null}
+                    />
+                  ) : (
+                    <AreaCharts
+                      minuteViews={null}
+                      hourlyViews={null}
+                      dailyViews={lastDailyData}
+                    />
+                  )}
+                </div>
+                <div>
+                  <PagesTable domain={domainName} />
                 </div>
               </div>
+            ) : (
               <div>
-                {selectedGraphType == GraphType.LAST_HOUR ? (
-                  <AreaCharts
-                    minuteViews={lastHourData}
-                    hourlyViews={null}
-                    dailyViews={null}
+                <div className="flex flex-col justify-center items-center gap-3">
+                  <Image
+                    src="/images/no-data.svg"
+                    alt=""
+                    width={100}
+                    height={100}
+                    className="opacity-70"
                   />
-                ) : selectedGraphType == GraphType.LAST_DAY ? (
-                  <AreaCharts
-                    minuteViews={null}
-                    hourlyViews={lastDayData}
-                    dailyViews={null}
-                  />
-                ) : (
-                  <AreaCharts
-                    minuteViews={null}
-                    hourlyViews={null}
-                    dailyViews={lastDailyData}
-                  />
-                )}
+                  <p>No Analysis Data</p>
+                  <p className="text-[14px] text-gray-400">
+                    Snippet is not configured for your website, add the code
+                    below to get started.
+                  </p>
+                </div>
+                <CodeBlock language="javascript" code={nextJsScript} />
+                <CodeBlock language="html" code={htmlScript} />
               </div>
-              <div>
-                <PagesTable domain={domainName} />
-              </div>
-            </div>
+            )
+          ) : selectedTabType == "overview" ? (
+            <Overview domain={domainName}/>
           ) : (
-            <div>
-              <div className="flex flex-col justify-center items-center gap-3">
-                <Image
-                  src="/images/no-data.svg"
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="opacity-70"
-                />
-                <p>No Analysis Data</p>
-                <p className="text-[14px] text-gray-400">
-                  Snippet is not configured for your website, add the code below
-                  to get started.
-                </p>
-              </div>
-              <CodeBlock language="javascript" code={nextJsScript} />
-              <CodeBlock language="html" code={htmlScript} />
-            </div>
+            <div>Issues</div>
           )}
         </div>
       </div>

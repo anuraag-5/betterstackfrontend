@@ -13,19 +13,19 @@ const AreaCharts = ({ minuteViews, hourlyViews, dailyViews }: Props) => {
   const minuteData =
     minuteViews?.map((d) => ({
       time: d.minute,
-      views: d.views / 2,
+      views: d.views,
     })) ?? [];
 
   const hourlyData =
     hourlyViews?.map((d) => ({
       time: d.hour,
-      views: d.views / 2,
+      views: d.views,
     })) ?? [];
 
   const dailyData =
     dailyViews?.map((d) => ({
       time: d.day,
-      views: d.views / 2,
+      views: d.views,
     })) ?? [];
 
   // Pick best available data automatically

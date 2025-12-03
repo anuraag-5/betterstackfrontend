@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DailyView, HourlyView, MinuteView } from "./types";
-import { PageView } from "@/components/PagesTable";
+import { PageView, TotalViews, UniqueUsers } from "@/components/PagesTable";
 
 export const createWebsite = async (domain: string, about: string, userId: string) => {
     try {
@@ -79,6 +79,30 @@ export const getViewsPerPage = async (website: string) => {
         });
 
         return (await res.data) as { data: PageView[] | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
+export const getTotalUniqueUsers = async (website: string) => {
+    try {
+        const res = await axios.post("http://localhost:3001/api/get_total_unique_users", {
+            website
+        });
+
+        return (await res.data) as { data: UniqueUsers | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
+export const getTotalViews = async (website: string) => {
+    try {
+        const res = await axios.post("http://localhost:3001/api/get_total_views", {
+            website
+        });
+
+        return (await res.data) as { data: TotalViews | null, success: boolean };
     } catch (_) {
         return { data: null, success: false }
     }

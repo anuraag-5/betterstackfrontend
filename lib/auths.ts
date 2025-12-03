@@ -34,7 +34,7 @@ export const signUpUser = async (
 export const signInUser = async (email: string, password: string) => {
   try {
     const res = await axios.post(
-      "http://192.168.1.7:3001/api/user/signin",
+      "http://localhost:3001/api/user/signin",
       {
         username: email,
         password,
