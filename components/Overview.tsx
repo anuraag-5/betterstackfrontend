@@ -18,7 +18,7 @@ const Overview = ({ domain }: { domain: string }) => {
     getAllData()
   }, [ domain ])
   return (
-    <div className=" w-fit">
+    <div className="w-fit">
       <div>
         <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">Popularity :</div>
         <div className="flex my-5 gap-8">
