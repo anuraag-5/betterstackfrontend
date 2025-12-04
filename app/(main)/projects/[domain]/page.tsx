@@ -71,13 +71,13 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
     getGraphData();
   }, [user, domainName]);
   return (
-    <div className="flex-1 flex flex-col justify-between pt-6 pl-4">
-      <div className="text-[#bfbfbf]">
-        Your Projects &nbsp; &gt; &nbsp;{" "}
-        <span className="text-[#777777] text-[15px]">{domainName}</span>
+    <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4">
+      <div className="text-[#bfbfbf] flex">
+        <div className="hidden md:block">Your Projects &nbsp; &gt; &nbsp;{" "}</div>
+        <div className="text-[#777777] text-[15px] pl-2 md:pl-0">{domainName}</div>
       </div>
-      <div className="flex-1 flex flex-col gap-5 bg-[#262626] mt-6 rounded-tl-4xl rounded-bl-4xl px-12 pt-12 pb-5 overflow-y-auto">
-        <div className="flex gap-4">
+      <div className="flex-1 flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-8 md:px-12 pt-12 pb-5 overflow-y-auto">
+        <div className="flex gap-4 justify-around md:justify-start">
           <div
             className="px-5 py-2 text-[14px] relative cursor-pointer rounded-md"
             onClick={() => handleTabChange("analysis")}
@@ -124,7 +124,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             ) : null}
           </div>
         </div>
-        <div className="flex-1 bg-[#181818] rounded-4xl pt-10 pb-8 px-12">
+        <div className={"flex-1 md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" + (selectedTabType === "analysis" ? "": " max-h-[600px]")}>
           {selectedTabType == "analysis" ? (
             website[0].isSnippetAdded ? (
               <div className="flex flex-col gap-5">

@@ -34,7 +34,7 @@ const Navbar = () => {
           className="hidden h-full max-w-[300px] border-r border-[#767676] md:flex flex-col px-6 pt-6 pb-3 justify-between"
           layoutId="menu"
           transition={{
-            duration: 0.2,
+            duration: 0.4,
           }}
         >
           <div className="flex flex-col h-[220px] justify-between">
@@ -115,7 +115,7 @@ const Navbar = () => {
           className="hidden h-full max-w-[300px] border-r border-[#767676] md:flex flex-col px-4 pt-6 pb-3 justify-between"
           layoutId="menu"
           transition={{
-            duration: 0.2,
+            duration: 0.4,
           }}
         >
           <div className="flex flex-col h-[220px] justify-between items-center">

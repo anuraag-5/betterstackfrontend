@@ -21,7 +21,7 @@ const Overview = ({ domain }: { domain: string }) => {
     <div className="w-fit">
       <div>
         <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">Popularity :</div>
-        <div className="flex my-5 gap-8">
+        <div className="flex flex-col xl:flex-row my-5 gap-8">
           <div className="min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
             <Image 
             src="/images/total-views.svg"
