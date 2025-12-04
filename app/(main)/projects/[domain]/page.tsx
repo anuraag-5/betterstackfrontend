@@ -14,6 +14,7 @@ import Image from "next/image";
 import AreaCharts from "@/components/AreaChart";
 import PagesTable from "@/components/PagesTable";
 import Overview from "@/components/Overview";
+import Issues from "@/components/Issues";
 
 enum GraphType {
   LAST_HOUR = "Last Hour",
@@ -213,7 +214,9 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
           ) : selectedTabType == "overview" ? (
             <Overview domain={domainName}/>
           ) : (
-            <div>Issues</div>
+            <div>
+              <Issues />
+            </div>
           )}
         </div>
       </div>
