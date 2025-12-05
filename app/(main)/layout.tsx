@@ -41,7 +41,7 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   }, [router, getUser, getWebsites, setUser, setWebsites]);
 
   return (
-    <section className="h-screen w-screen bg-black py-3 flex">
+    <section className="h-screen w-screen bg-black py-3 flex overflow-y-hidden">
       <Navbar />
       {loading ? (
         <div className="flex-1 flex flex-col justify-between pt-6 pl-4">

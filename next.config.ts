@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true
-  }
+  },
+  allowedDevOrigins: ['http://192.168.1.5:3000', 'paragraphic-superlogically-oakley.ngrok-free.dev']
 };
 
 export default nextConfig;

@@ -21,26 +21,26 @@ const Overview = ({ domain }: { domain: string }) => {
     <div className="w-fit">
       <div>
         <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">Popularity :</div>
-        <div className="flex flex-col xl:flex-row my-5 gap-8">
-          <div className="min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
+        <div className="flex flex-col xl:flex-row my-7 gap-8">
+          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
             <Image 
             src="/images/total-views.svg"
             alt=""
             width={50}
             height={50}
             />
-            <div className="text-lg">Total Views</div>
-            <div className="text-3xl text-[#C499FF] mt-2">{totalViews}</div>
+            <div className="text-md md:text-lg">Total Views</div>
+            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">{totalViews}</div>
           </div>
-          <div className="min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
+          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
             <Image 
             src="/images/unique-views.svg"
             alt=""
             width={46}
             height={46}
             />
-            <div className="text-lg mt-2">Unique Users</div>
-            <div className="text-3xl text-[#C499FF] mt-2">{uniqueUsers}</div>
+            <div className="text-md md:text-lg mt-2">Unique Users</div>
+            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">{uniqueUsers}</div>
           </div>
         </div>
       </div>

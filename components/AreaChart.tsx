@@ -55,7 +55,7 @@ const AreaCharts = ({ minuteViews, hourlyViews, dailyViews }: Props) => {
   }, [ size ]);
 
   return (
-    <div style={{ width: size > 767 ? "70%": "93%", height: 320 }}>
+    <div style={{ width: size > 767 ? "75%": "93%", height: 320 }}>
       <ResponsiveContainer>
         <AreaChart
           data={data}

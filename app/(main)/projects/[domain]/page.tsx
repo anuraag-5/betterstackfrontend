@@ -76,10 +76,10 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
         <div className="hidden md:block">Your Projects &nbsp; &gt; &nbsp;{" "}</div>
         <div className="text-[#777777] text-[15px] pl-2 md:pl-0">{domainName}</div>
       </div>
-      <div className="flex-1 flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-8 md:px-12 pt-12 pb-5 overflow-y-auto">
+      <div className="flex-1 flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-12 pb-5 overflow-y-scroll">
         <div className="flex gap-4 justify-around md:justify-start">
           <div
-            className="px-5 py-2 text-[14px] relative cursor-pointer rounded-md"
+            className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer rounded-md"
             onClick={() => handleTabChange("analysis")}
           >
             Analysis
@@ -94,7 +94,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             ) : null}
           </div>
           <div
-            className="px-5 py-2 text-[14px] relative cursor-pointer"
+            className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer"
             onClick={() => handleTabChange("overview")}
           >
             Overview
@@ -109,7 +109,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             ) : null}
           </div>
           <div
-            className="px-5 py-2 text-[14px] relative cursor-pointer"
+            className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer"
             onClick={() => handleTabChange("issues")}
           >
             Issues
@@ -124,26 +124,26 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             ) : null}
           </div>
         </div>
-        <div className={"flex-1 md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" + (selectedTabType === "analysis" ? "": " max-h-[600px]")}>
+        <div className={"flex-1 flex justify-center md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" + (selectedTabType === "analysis" ? "": " max-h-[600px]") + (selectedTabType === "overview" ? " md:justify-start" : "")}>
           {selectedTabType == "analysis" ? (
             website[0].isSnippetAdded ? (
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-5 w-full">
                 <div className="flex gap-3 items-center mb-5">
                   <div>Filter by :</div>
-                  <div className="relative flex gap-4 items-center  bg-[#262626] px-3 py-1 rounded-md">
-                    <div className="text-[#C499FF] text-[14px] font-medium min-w-[80px]">
+                  <div className="relative flex gap-4 items-center bg-[#262626] px-3 py-1 rounded-md">
+                    <div className="text-[#C499FF] text-[12px] md:text-[14px] font-medium min-w-[80px]">
                       {selectedGraphType}
                     </div>
                     <Image
                       src="/images/arrow-down.svg"
                       alt=""
-                      width={9}
+                      width={12}
                       height={15}
                       onClick={toggleOpen}
                       className="cursor-pointer"
                     />
                     {isTabOpen ? (
-                      <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
+                      <div className="absolute top-8 right-0 left-0 text-[#C499FF] text-[12px] md:text-[14px] font-medium bg-[#262626] px-3 py-1 rounded-lg z-10">
                         <div
                           className="border-b border-gray-400 p-2 cursor-pointer"
                           onClick={() => toggleTabType(GraphType.LAST_HOUR)}
@@ -202,7 +202,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                     className="opacity-70"
                   />
                   <p>No Analysis Data</p>
-                  <p className="text-[14px] text-gray-400">
+                  <p className="text-[12px] md:text-[14px] text-gray-400">
                     Snippet is not configured for your website, add the code
                     below to get started.
                   </p>
