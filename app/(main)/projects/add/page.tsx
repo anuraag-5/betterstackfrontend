@@ -8,10 +8,8 @@ import { useForm } from "@tanstack/react-form";
 import { formSchemaAddWebsite } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { neueFont } from "@/app/fonts/fonts";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -23,9 +21,12 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { createWebsite } from "@/lib/websiteFunctions";
+import { useUserStore } from "@/lib/userStore";
 
 const Page = () => {
   const router = useRouter();
+  const { user, getWebsites, setWebsites } = useUserStore();
 
   const form = useForm({
     defaultValues: {
@@ -36,7 +37,15 @@ const Page = () => {
       onSubmit: formSchemaAddWebsite,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
+      const newWebsite = await createWebsite(value.domain, value.about, user!.id);
+      if(newWebsite.success) {
+        toast({ title: "Website Added", description: ""});
+        const websites = await getWebsites(localStorage.getItem("jwt")!);
+        setWebsites(websites);
+        return router.push("/projects");
+      } else {
+        toast({ title: "Servers are down at the moment" , description: "" });
+      }
     },
   });
   return (
@@ -52,7 +61,7 @@ const Page = () => {
         </div>
       </div>
       <div className="flex-1 bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-11 pb-10 overflow-y-auto">
-        <div className="flex flex-col border-2 border-[#767676] rounded-3xl h-full pt-7 pb-5 px-7 md:p-10 xl:p-15 justify-evenly">
+        <div className="flex flex-col border-2 border-[#767676] rounded-3xl h-full pt-7 pb-5 px-7 md:p-10 xl:p-15 justify-evenly overflow-y-scroll">
           <div>
             <Image
               src="/images/violet-project-icon.svg"

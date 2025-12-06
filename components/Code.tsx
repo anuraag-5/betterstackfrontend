@@ -1,9 +1,15 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark, atomDark, gruvboxDark, dark, solarizedDarkAtom, vscDarkPlus} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useState } from "react";
 import { Copy } from "lucide-react"; // optional icon lib
 
-export default function CodeBlock({ language, code }: { language: string, code: string }) {
+export default function CodeBlock({
+  language,
+  code,
+}: {
+  language: string;
+  code: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
@@ -13,7 +19,7 @@ export default function CodeBlock({ language, code }: { language: string, code: 
   };
 
   return (
-    <div className="relative rounded-lg overflow-hidden mt-5">
+    <div className="relative overflow-hidden mt-5 w-fit">
       <button
         onClick={copyToClipboard}
         className="absolute top-5 right-3 text-white px-2 py-1 text-sm rounded flex items-center gap-1"
@@ -21,9 +27,15 @@ export default function CodeBlock({ language, code }: { language: string, code: 
         <Copy size={14} />
       </button>
 
-      <SyntaxHighlighter language={language} style={ vscDarkPlus } customStyle={{ borderRadius: 20 }}>
-        {code}
-      </SyntaxHighlighter>
+      <div className="w-[280px] md:w-[350px] lg:w-[450px] xl:w-[700px]">
+        <SyntaxHighlighter
+          language={language}
+          style={vscDarkPlus}
+          customStyle={{ borderRadius: 20, width: "100%", paddingLeft: 0 }}
+        >
+          {code}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 }

@@ -17,9 +17,9 @@ const YourProjects = () => {
     router.push(`/projects/${website}`);
   };
   return (
-    <div className="flex-1 flex flex-col justify-between pt-6 pl-4">
+    <div className="flex-1 flex flex-col justify-between p-2 md:pt-6 md:pb-0 md:pl-4 md:pr-0">
       <div className="text-[#bfbfbf]">Your Projects</div>
-      <div className="flex-1 bg-[#262626] mt-6 rounded-tl-4xl rounded-bl-4xl p-6 grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-y-16 overflow-y-auto">
+      <div className="flex-1 bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] p-6 grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-y-16 place-items-center md:place-items-start overflow-y-auto">
         {websites?.map((w, i) => (
           <div
             key={w.domain}
@@ -43,7 +43,7 @@ const YourProjects = () => {
                 <div
                   className={
                     neueFont.className +
-                    " lg:text-sm text-[12px] text-[#A8A8A8] min-w-[295px]"
+                    " lg:text-sm text-[12px] text-[#A8A8A8] min-w-[250px] md:min-w-[295px]"
                   }
                 >
                   {w.about}

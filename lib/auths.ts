@@ -7,7 +7,7 @@ export const signUpUser = async (
 ) => {
   try {
     const res = await axios.post(
-      "http://localhost:3001/api/user/signup",
+      "http://192.168.1.5:3001/api/user/signup",
       {
         username,
         password,
@@ -34,7 +34,7 @@ export const signUpUser = async (
 export const signInUser = async (email: string, password: string) => {
   try {
     const res = await axios.post(
-      "http://localhost:3001/api/user/signin",
+      "http://192.168.1.5:3001/api/user/signin",
       {
         username: email,
         password,
@@ -58,7 +58,7 @@ export const signInUser = async (email: string, password: string) => {
 
 export const signOutUser = async () => {
   await axios.post(
-    "http://localhost:3001/api/user/logout",
+    "http://192.168.1.5:3001/api/user/logout",
     {},
     {
       withCredentials: true,

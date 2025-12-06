@@ -65,7 +65,6 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
       const lastHourViews = await getWebsiteLastHourViews(domainName, user!.id);
       const hourlyViews = await getWebsiteHourlyViews(domainName, user!.id);
       const dailyViews = await getWebsiteDailyViews(domainName, user!.id);
-      console.log("Hourly Views Data:", hourlyViews);
 
       setLastHourData(lastHourViews.data!);
       setLastDayData(hourlyViews.data!);
@@ -204,7 +203,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="flex flex-col items-center justify-evenly rounded-lg">
                 <div className="flex flex-col justify-center items-center gap-3">
                   <Image
                     src="/images/no-data.svg"
