@@ -1,6 +1,12 @@
 "use client";
 
-import { DailyView, HourlyView, MinuteView } from "@/lib/types";
+import {
+  DailyView,
+  HourlyView,
+  htmlScript,
+  MinuteView,
+  nextJsScript,
+} from "@/lib/types";
 import { useUserStore } from "@/lib/userStore";
 import {
   getWebsiteDailyViews,
@@ -24,25 +30,11 @@ enum GraphType {
 }
 
 const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
-  const domainName = use(params).domain;
   const { user, websites } = useUserStore();
   const router = useRouter();
+  const domainName = use(params).domain;
+  const website = websites!.filter((w) => w.domain === domainName);
 
-  const website = websites!.filter((w) => w.domain == domainName);
-  const nextJsScript = `
-     import Script from "next/script";
-
-     <Script
-       src="http://localhost:3001/snippet"
-       strategy="afterInteractive"
-     />
-  `;
-  const htmlScript = `
-     <script
-     src="http://localhost:3001/snippet"
-     >
-     </script>
-  `;
   const [selectedTabType, setSelectTabType] = useState("analysis");
   const [selectedGraphType, setSelectedGraphType] = useState<GraphType>(
     GraphType.LAST_HOUR
@@ -77,12 +69,16 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
     <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4">
       <div className="text-[#bfbfbf] flex justify-between items-center">
         <div className="flex">
-          <div className="hidden md:block">Your Projects &nbsp; &gt; &nbsp;{" "}</div>
-          <div className="text-[#777777] text-[15px] pl-2 md:pl-0">{domainName}</div>
+          <div className="hidden md:block">
+            Your Projects &nbsp; &gt; &nbsp;{" "}
+          </div>
+          <div className="text-[#777777] text-[15px] pl-2 md:pl-0">
+            {domainName}
+          </div>
         </div>
-        <div 
-        className="cursor-pointer mr-5 md:mr-7 text-[12px] md:text-[14px] text-black py-1 px-2 md:py-2 md:px-4 bg-[#C499FF] rounded-full"
-        onClick={handleAddClicked}
+        <div
+          className="cursor-pointer mr-5 md:mr-7 text-[12px] md:text-[14px] text-black py-1 px-2 md:py-2 md:px-4 bg-[#C499FF] rounded-full"
+          onClick={handleAddClicked}
         >
           Add +
         </div>
@@ -94,7 +90,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             onClick={() => handleTabChange("analysis")}
           >
             Analysis
-            {selectedTabType == "analysis" ? (
+            {selectedTabType === "analysis" ? (
               <motion.div
                 className="absolute inset-0 bg-white rounded-md"
                 layoutId="background"
@@ -109,7 +105,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             onClick={() => handleTabChange("overview")}
           >
             Overview
-            {selectedTabType == "overview" ? (
+            {selectedTabType === "overview" ? (
               <motion.div
                 className="absolute inset-0 bg-white rounded-md"
                 layoutId="background"
@@ -124,7 +120,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             onClick={() => handleTabChange("issues")}
           >
             Issues
-            {selectedTabType == "issues" ? (
+            {selectedTabType === "issues" ? (
               <motion.div
                 className="absolute inset-0 bg-white rounded-md"
                 layoutId="background"
@@ -135,8 +131,14 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             ) : null}
           </div>
         </div>
-        <div className={"flex-1 flex justify-center md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" + (selectedTabType === "analysis" ? "": " max-h-[600px]") + (selectedTabType === "overview" ? " md:justify-start" : "")}>
-          {selectedTabType == "analysis" ? (
+        <div
+          className={
+            "flex-1 flex justify-center md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" +
+            (selectedTabType === "analysis" ? "" : " max-h-[600px]") +
+            (selectedTabType === "overview" ? " md:justify-start" : "")
+          }
+        >
+          {selectedTabType === "analysis" ? (
             website[0].isSnippetAdded ? (
               <div className="flex flex-col gap-5 w-full">
                 <div className="flex gap-3 items-center mb-5">
@@ -178,13 +180,13 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                   </div>
                 </div>
                 <div>
-                  {selectedGraphType == GraphType.LAST_HOUR ? (
+                  {selectedGraphType === GraphType.LAST_HOUR ? (
                     <AreaCharts
                       minuteViews={lastHourData}
                       hourlyViews={null}
                       dailyViews={null}
                     />
-                  ) : selectedGraphType == GraphType.LAST_DAY ? (
+                  ) : selectedGraphType === GraphType.LAST_DAY ? (
                     <AreaCharts
                       minuteViews={null}
                       hourlyViews={lastDayData}
@@ -222,8 +224,8 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                 <CodeBlock language="html" code={htmlScript} />
               </div>
             )
-          ) : selectedTabType == "overview" ? (
-            <Overview domain={domainName}/>
+          ) : selectedTabType === "overview" ? (
+            <Overview domain={domainName} />
           ) : (
             <div>
               <Issues />

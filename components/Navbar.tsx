@@ -39,7 +39,10 @@ const Navbar = () => {
         >
           <div className="flex flex-col h-[220px] justify-between">
             <div className="flex justify-between items-center">
-              <div className="flex gap-3">
+              <div 
+              className="flex gap-3 cursor-pointer"
+              onClick={() => router.push("/")}
+              >
                 <Image
                   src="/images/brand-logo.png"
                   alt=""

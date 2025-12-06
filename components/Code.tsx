@@ -31,7 +31,7 @@ export default function CodeBlock({
         <SyntaxHighlighter
           language={language}
           style={vscDarkPlus}
-          customStyle={{ borderRadius: 20, width: "100%", paddingLeft: 0 }}
+          customStyle={{ borderRadius: 20, width: "100%", paddingLeft: 18 }}
         >
           {code}
         </SyntaxHighlighter>
