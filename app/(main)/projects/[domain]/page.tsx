@@ -8,6 +8,7 @@ import {
   getWebsiteLastHourViews,
 } from "@/lib/websiteFunctions";
 import { use, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import * as motion from "motion/react-client";
 import CodeBlock from "@/components/Code";
 import Image from "next/image";
@@ -25,6 +26,8 @@ enum GraphType {
 const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const domainName = use(params).domain;
   const { user, websites } = useUserStore();
+  const router = useRouter();
+
   const website = websites!.filter((w) => w.domain == domainName);
   const nextJsScript = `
      import Script from "next/script";
@@ -50,6 +53,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const [isTabOpen, setIsTabOpen] = useState(false);
 
   const handleTabChange = (tab: string) => setSelectTabType(tab);
+  const handleAddClicked = () => router.push("/projects/add");
   const toggleTabType = (tab: GraphType) => {
     setSelectedGraphType(tab);
     setIsTabOpen(false);
@@ -72,9 +76,17 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   }, [user, domainName]);
   return (
     <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4">
-      <div className="text-[#bfbfbf] flex">
-        <div className="hidden md:block">Your Projects &nbsp; &gt; &nbsp;{" "}</div>
-        <div className="text-[#777777] text-[15px] pl-2 md:pl-0">{domainName}</div>
+      <div className="text-[#bfbfbf] flex justify-between items-center">
+        <div className="flex">
+          <div className="hidden md:block">Your Projects &nbsp; &gt; &nbsp;{" "}</div>
+          <div className="text-[#777777] text-[15px] pl-2 md:pl-0">{domainName}</div>
+        </div>
+        <div 
+        className="cursor-pointer mr-5 md:mr-7 text-[12px] md:text-[14px] text-black py-1 px-2 md:py-2 md:px-4 bg-[#C499FF] rounded-full"
+        onClick={handleAddClicked}
+        >
+          Add +
+        </div>
       </div>
       <div className="flex-1 flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-12 pb-5 overflow-y-scroll">
         <div className="flex gap-4 justify-around md:justify-start">
