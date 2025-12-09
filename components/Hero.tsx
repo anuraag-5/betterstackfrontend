@@ -69,6 +69,7 @@ const Hero = () => {
                     alt=""
                     fill
                     className="object-contain lg:translate-x-90 xl:translate-x-110"
+                    priority
                     />
                 ) : width > 0 ? (
                     (
@@ -77,6 +78,7 @@ const Hero = () => {
                         alt=""
                         fill
                         className="object-contain translate-y-60"
+                        priority
                         />
                     )
                 ) : null

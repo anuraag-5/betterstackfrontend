@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { LenisRef, ReactLenis } from "lenis/react";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
+import InfiniteTech from "@/components/InfiniteTech";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {
@@ -18,8 +19,9 @@ const LandingPage = () => {
   }, []);
   return (
     <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
-      <section className="p-3 bg-[#D9D9D9] flex flex-col items-center">
+      <section className="p-3 bg-[#D9D9D9] flex flex-col items-center overflow-x-hidden">
         <Hero />
+        <InfiniteTech />
       </section>
     </ReactLenis>
   );
