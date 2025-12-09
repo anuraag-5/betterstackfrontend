@@ -18,7 +18,7 @@ const LandingPage = () => {
   }, []);
   return (
     <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
-      <section className="p-3 bg-[#D9D9D9]">
+      <section className="p-3 bg-[#D9D9D9] flex flex-col items-center">
         <Hero />
       </section>
     </ReactLenis>
