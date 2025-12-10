@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 body {
-  color: white;
+  color: #d9d9d9;
 }
 
 ::-webkit-scrollbar {

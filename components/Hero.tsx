@@ -33,7 +33,7 @@ const Hero = () => {
                 </div>
                 <div className="bg-[#301751] py-2 px-5 rounded-full w-fit text-white font-semibold mt-4">Get Started</div>
             </div>
-            <div className="flex-1 min-h-[300px]"></div>
+            <div className="flex-1 min-h-[250px]"></div>
             {
                 width > 1023 ? (
                     <Image

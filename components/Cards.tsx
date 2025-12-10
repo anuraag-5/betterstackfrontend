@@ -6,7 +6,7 @@ import { RefObject } from "react";
 
 const Cards = ({ refs }: { refs: RefObject<HTMLDivElement | null>[]}) => {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row mb-15 gap-5 md:gap-0">
         {
             cards.map((card, i) => (
                 <div key={i} ref={refs[i]} className={"w-[230px] h-[300px] lg:w-[300px] lg:h-[370px] bg-[#301751] rounded-3xl flex flex-col items-center p-2 lg:p-4 gap-3" + (i === 0 ? " md:rotate-[-3deg] md:translate-x-[50px]" : i === 1 ? " md:rotate-[3deg] md:translate-y-[15px] z-30 shadow-[0_0_50px_6px_#B17BFC]" : " md:rotate-[5deg] md:translate-y-[24px] md:translate-x-[-50px]")}>
