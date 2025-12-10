@@ -1,5 +1,6 @@
 "use client";
 
+import { useWidth } from "@/hooks/useWidth";
 import { DailyView, HourlyView, MinuteView } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Area, Tooltip, AreaChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
@@ -11,7 +12,8 @@ type Props = {
 };
 
 const AreaCharts = ({ minuteViews, hourlyViews, dailyViews }: Props) => {
-  const [ size, setSize ] = useState(768);
+  const size = useWidth();
+  
   const minuteData =
     minuteViews?.map((d) => ({
       time: d.minute,
@@ -44,15 +46,6 @@ const AreaCharts = ({ minuteViews, hourlyViews, dailyViews }: Props) => {
       : hourlyData.length > 0
       ? "hour"
       : "day";
-
-  useEffect(() => {
-    const getSize = () => setSize(window.innerWidth);
-    getSize();
-    
-    window.addEventListener("resize", getSize);
-    
-    return () => window.removeEventListener("resize", getSize);
-  }, [ size ]);
 
   return (
     <div style={{ width: size > 767 ? "75%": "93%", height: 320 }}>

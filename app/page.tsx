@@ -6,6 +6,7 @@ import { LenisRef, ReactLenis } from "lenis/react";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import InfiniteTech from "@/components/InfiniteTech";
+import Features from "@/components/Features";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {
@@ -23,6 +24,10 @@ const LandingPage = () => {
         <Hero />
         <InfiniteTech />
       </section>
+      <section>
+        <Features />
+      </section>
+      <section className="min-h-screen w-full bg-black -mt-px">Hi</section>
     </ReactLenis>
   );
 };

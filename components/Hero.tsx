@@ -1,39 +1,14 @@
 "use client";
 
 import { delaFont } from "@/app/fonts/fonts";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { useWidth } from "@/hooks/useWidth";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import Star from "./Star";
 
-gsap.registerPlugin(useGSAP);
 const Hero = () => {
-  const [ width, setWidth ] = useState(0);
-  const circleRef = useRef<HTMLDivElement | null>(null);
-  useGSAP(() => {
-    const tl = gsap.timeline();
-
-    tl.fromTo(circleRef.current, {
-        opacity: 0.6,
-        scale: 0.7
-    }, {
-        opacity: 0.4,
-        scale: 2.5,
-        repeat: -1,
-        yoyo: true
-    })
-  }, { dependencies: [] })
-  
-  useEffect(() => {
-    const updateWidth = () => setWidth(window.innerWidth);
-    updateWidth()
-
-    window.addEventListener("resize", updateWidth);
-
-    return () => window.removeEventListener("resize", updateWidth);
-  }, [])
+  const width = useWidth();
   return (
-    <div className='text-black flex flex-col min-h-screen bg-linear-to-b from-[#C499FF] to-[#745A97] rounded-[12px] md:rounded-[36px] px-4 md:px-4 xl:px-8 2xl:px-24 overflow-x-hidden  max-w-[1600px] w-full'>
+    <div className='text-black flex flex-col min-h-screen bg-linear-to-b from-[#C499FF] to-[#745A97] rounded-[12px] md:rounded-[36px] px-4 md:px-4 xl:px-8 2xl:px-24 overflow-x-hidden  max-w-[1600px] max-h-[800px] w-full'>
         <div className='flex justify-between mt-8'>
             <div className={'px-5 py-1 border-3 border-white rounded-full text-white text-[14px] md:text-[16px] ' + delaFont.className }>Nexus</div>
             <div className="px-5 py-1 bg-white rounded-full flex justify-center items-center text-[12px] md:text-[14px]">⭐ Star us on Github</div>
@@ -41,10 +16,7 @@ const Hero = () => {
         <div className='flex flex-col lg:flex-row mt-20 justify-between lg:pl-12 xl:pl-20 relative max-w-[1300px] flex-1'>
             <div className="flex flex-col justify-evenly mb-13">
                 <div className="bg-white px-4 py-[3px] flex gap-2 rounded-full items-center w-fit">
-                    <div className="relative w-2 h-2">
-                        <div className="bg-[#a05cff] w-full h-full rounded-full"></div>
-                        <div className="absolute rounded-full bg-[#C499FF] top-0 bottom-0 left-0 right-0" ref={circleRef}></div>
-                    </div>
+                    <Star /> 
                     <div className="text-[10px] font-bold">Built with Next.js & Rust</div>
                 </div>
                 <div className="flex flex-col justify-evenly min-h-[330px]">
@@ -68,7 +40,7 @@ const Hero = () => {
                     src="/images/hero-image-main.png" 
                     alt=""
                     fill
-                    className="object-contain lg:translate-x-90 xl:translate-x-110"
+                    className="object-contain lg:translate-x-120 xl:translate-x-110"
                     priority
                     />
                 ) : width > 0 ? (

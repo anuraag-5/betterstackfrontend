@@ -59,3 +59,17 @@ src="http://localhost:3001/snippet"
 >
 </script>
 `;
+
+export const cards = [{
+  title: ["Total Views and", "Unique Visitors"],
+  subTitle: ["Identify peaks, dips, and patterns to ", "optimize your content and improve ", "user engagement."],
+  iconUrl: "/images/users.svg"
+}, {
+  title: ["Your data, smartly", "visualized."],
+  subTitle: ["Nexus automatically generates clean, ", "easy-to-read graphs to help you ", "make fast, informed decisions."],
+  iconUrl: "/images/graph.svg"
+}, {
+  title: ["Average Response", "Time."],
+  subTitle: ["Track your average response time", "with pinpoint accuracy.", "Detect slowdowns."],
+  iconUrl: "/images/time.svg"
+}]
