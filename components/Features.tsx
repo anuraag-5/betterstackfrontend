@@ -22,7 +22,7 @@ const Features = () => {
         scrollTrigger: {
             trigger: mainRef.current,
             start: "top top",
-            end: "end -150%",
+            end: "+=200%",
             pin: true,
             scrub: 2,
             anticipatePin: 1

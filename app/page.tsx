@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import InfiniteTech from "@/components/InfiniteTech";
 import Features from "@/components/Features";
+import UseCases from "@/components/UseCases";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {
@@ -27,7 +28,12 @@ const LandingPage = () => {
       <section>
         <Features />
       </section>
-      <section className="min-h-screen w-full bg-black -mt-px">Hi</section>
+      <section>
+        <UseCases />
+      </section>
+      <section><div className="min-h-screen bg-black w-full"></div></section>
+      <section><div className="min-h-screen bg-black w-full"></div></section>
+      <section><div className="min-h-screen bg-black w-full"></div></section>
     </ReactLenis>
   );
 };
