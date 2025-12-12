@@ -1,12 +1,12 @@
 "use client";
 
-import { kapakanaFont } from "@/app/fonts/fonts";
-import Star from "./Star";
-import { useEffect, useRef } from "react";
-import { useWidth } from "@/hooks/useWidth";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Star from "./Star";
 import Image from "next/image";
+import { useWidth } from "@/hooks/useWidth";
+import { kapakanaFont } from "@/app/fonts/fonts";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 const UseCases = () => {

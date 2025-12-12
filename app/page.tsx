@@ -1,13 +1,13 @@
 "use client";
 
-import Hero from "@/components/Hero";
 import gsap from "gsap";
-import { LenisRef, ReactLenis } from "lenis/react";
-import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
-import InfiniteTech from "@/components/InfiniteTech";
+import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import UseCases from "@/components/UseCases";
+import InfiniteTech from "@/components/InfiniteTech";
+import { useGSAP } from "@gsap/react";
+import { useEffect, useRef } from "react";
+import { LenisRef, ReactLenis } from "lenis/react";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {
