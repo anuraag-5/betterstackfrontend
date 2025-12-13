@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import { LenisRef, ReactLenis } from "lenis/react";
 import FAQ from "@/components/FAQ";
+import CallToSection from "@/components/CallToSection";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {
@@ -32,7 +33,12 @@ const LandingPage = () => {
       <section>
         <UseCases />
       </section>
-      <section><FAQ /></section>
+      <section>
+        <FAQ />
+      </section>
+      <section>
+        <CallToSection />
+      </section>
     </ReactLenis>
   );
 };
