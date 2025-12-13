@@ -1,7 +1,7 @@
 "use client";
 
-import { cards } from "@/lib/types";
 import Image from "next/image";
+import { cards } from "@/lib/types";
 import { RefObject } from "react";
 
 const Cards = ({ refs }: { refs: RefObject<HTMLDivElement | null>[]}) => {

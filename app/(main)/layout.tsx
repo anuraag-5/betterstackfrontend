@@ -1,10 +1,10 @@
 "use client";
 
-import { useUserStore } from "@/lib/userStore";
-import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import * as motion from "motion/react-client";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/lib/userStore";
+import { ReactNode, useEffect, useState } from "react";
 
 const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();

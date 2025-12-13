@@ -1,11 +1,11 @@
 "use client";
 
+import Star from "./Star";
+import Link from "next/link";
+import Image from "next/image";
 import { delaFont } from "@/app/fonts/fonts";
 import { useWidth } from "@/hooks/useWidth";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import Star from "./Star";
 
 const Hero = () => {
   const router = useRouter();

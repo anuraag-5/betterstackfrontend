@@ -1,5 +1,15 @@
 "use client";
 
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import Issues from "@/components/Issues";
+import Overview from "@/components/Overview";
+import CodeBlock from "@/components/Code";
+import AreaCharts from "@/components/AreaChart";
+import PagesTable from "@/components/PagesTable";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/lib/userStore";
+import { use, useEffect, useState } from "react";
 import {
   DailyView,
   HourlyView,
@@ -7,21 +17,11 @@ import {
   MinuteView,
   nextJsScript,
 } from "@/lib/types";
-import { useUserStore } from "@/lib/userStore";
 import {
   getWebsiteDailyViews,
   getWebsiteHourlyViews,
   getWebsiteLastHourViews,
 } from "@/lib/websiteFunctions";
-import { use, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import * as motion from "motion/react-client";
-import CodeBlock from "@/components/Code";
-import Image from "next/image";
-import AreaCharts from "@/components/AreaChart";
-import PagesTable from "@/components/PagesTable";
-import Overview from "@/components/Overview";
-import Issues from "@/components/Issues";
 
 enum GraphType {
   LAST_HOUR = "Last Hour",

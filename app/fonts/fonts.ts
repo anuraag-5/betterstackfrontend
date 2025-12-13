@@ -1,5 +1,5 @@
-import { Dela_Gothic_One, Poppins, Kapakana } from "next/font/google";
 import localFont from "next/font/local";
+import { Dela_Gothic_One, Poppins, Kapakana } from "next/font/google";
 
 export const delaFont = Dela_Gothic_One({
     weight: ["400"],

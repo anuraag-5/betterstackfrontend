@@ -1,15 +1,15 @@
 "use client";
 
+import FAQ from "@/components/FAQ";
 import gsap from "gsap";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import UseCases from "@/components/UseCases";
 import InfiniteTech from "@/components/InfiniteTech";
+import CallToSection from "@/components/CallToSection";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import { LenisRef, ReactLenis } from "lenis/react";
-import FAQ from "@/components/FAQ";
-import CallToSection from "@/components/CallToSection";
 
 gsap.registerPlugin(useGSAP);
 const LandingPage = () => {

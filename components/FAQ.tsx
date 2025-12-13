@@ -1,7 +1,7 @@
 "use client";
 
-import FAQsCards from "./FAQsCards";
 import Star from "./Star";
+import FAQsCards from "./FAQsCards";
 import { kapakanaFont } from "@/app/fonts/fonts";
 
 const FAQ = () => {

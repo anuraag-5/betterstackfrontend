@@ -2,7 +2,6 @@
 
 import { useWidth } from "@/hooks/useWidth";
 import { DailyView, HourlyView, MinuteView } from "@/lib/types";
-import { useEffect, useState } from "react";
 import { Area, Tooltip, AreaChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 type Props = {

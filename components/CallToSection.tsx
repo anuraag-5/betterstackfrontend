@@ -1,8 +1,8 @@
 "use client";
 
-import { kapakanaFont } from "@/app/fonts/fonts";
-import { useRouter } from "next/navigation";
 import Star from "./Star";
+import { useRouter } from "next/navigation";
+import { kapakanaFont } from "@/app/fonts/fonts";
 
 const CallToSection = () => {
   const router = useRouter();

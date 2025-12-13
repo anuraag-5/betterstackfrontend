@@ -1,5 +1,5 @@
 import { getViewsPerPage } from "@/lib/websiteFunctions";
-import React, { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type PageView = {
   page_path: string;

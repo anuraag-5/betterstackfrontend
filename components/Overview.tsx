@@ -1,8 +1,8 @@
 "use client";
 
-import { getTotalUniqueUsers, getTotalViews } from "@/lib/websiteFunctions";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { getTotalUniqueUsers, getTotalViews } from "@/lib/websiteFunctions";
 
 const Overview = ({ domain }: { domain: string }) => {
   const [ totalViews, setTotalViews ] = useState(0);

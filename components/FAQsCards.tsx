@@ -1,9 +1,9 @@
 "use client";
 
 import * as motion from "motion/react-client";
-import { useAnimate } from "motion/react";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
+import { useAnimate } from "motion/react";
 
 const FAQsCards = () => {
   const [scope2, animate2] = useAnimate();

@@ -1,11 +1,11 @@
 "use client";
 
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
 import Image from "next/image";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import { useWidth } from "@/hooks/useWidth";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 const InfiniteTech = () => {

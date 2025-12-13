@@ -1,7 +1,7 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useState } from "react";
 import { Copy } from "lucide-react"; // optional icon lib
+import { useState } from "react";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 export default function CodeBlock({
   language,

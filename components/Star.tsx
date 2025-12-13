@@ -1,8 +1,8 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 
 const Star = () => {
   const circleRef = useRef<HTMLDivElement | null>(null);

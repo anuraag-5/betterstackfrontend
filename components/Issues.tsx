@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import * as motion from "motion/react-client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Issues = () => {

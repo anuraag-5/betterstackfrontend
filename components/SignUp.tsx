@@ -2,10 +2,14 @@
 
 import z from "zod";
 import toast from "./Toast";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { formSchemaSignUp } from "@/lib/types";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { neueFont } from "@/app/fonts/fonts";
+import { useRouter } from "next/navigation";
+import { signUpUser } from "@/lib/auths";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchemaSignUp } from "@/lib/types";
 import {
   Form,
   FormControl,
@@ -14,10 +18,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { signUpUser } from "@/lib/auths";
-import { useRouter } from "next/navigation";
-import { neueFont } from "@/app/fonts/fonts";
 
 const SignUp = () => {
   const router = useRouter();
