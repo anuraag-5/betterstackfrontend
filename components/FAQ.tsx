@@ -23,11 +23,11 @@ const FAQ = () => {
               answers.
             </div>
           </div>
-          <div className="flex flex-col items-center text-[9px] md:text-sm text-[#2c2c2c]">
+          <div className="flex flex-col items-center text-[12px] md:text-sm text-[#2c2c2c]">
             <div>
-              Find answers to common questions about how our platform helps you
+              Find answers to common questions about how our
             </div>
-            <div>monitor data.</div>
+            <div>platform helps you monitor data.</div>
           </div>
         </div>
       </div>

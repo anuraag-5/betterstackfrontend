@@ -2,16 +2,25 @@
 
 import { delaFont } from "@/app/fonts/fonts";
 import { useWidth } from "@/hooks/useWidth";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import Star from "./Star";
 
 const Hero = () => {
+  const router = useRouter();
   const width = useWidth();
   return (
     <div className='text-black flex flex-col min-h-screen bg-linear-to-b from-[#C499FF] to-[#745A97] rounded-[12px] md:rounded-[36px] px-4 md:px-4 xl:px-8 2xl:px-24 overflow-x-hidden  max-w-[1600px] max-h-[800px] w-full'>
         <div className='flex justify-between mt-8'>
             <div className={'px-5 py-1 border-3 border-white rounded-full text-white text-[14px] md:text-[16px] ' + delaFont.className }>Nexus</div>
-            <div className="px-5 py-1 bg-white rounded-full flex justify-center items-center text-[12px] md:text-[14px]">⭐ Star us on Github</div>
+            <Link 
+            className="px-5 py-1 bg-white rounded-full flex justify-center items-center text-[12px] md:text-[14px]"
+            href="https://github.com/anuraag-5/betterstackrust.git"
+            target="_blank"
+            >
+                ⭐ Star us on Github
+            </Link>
         </div>
         <div className='flex flex-col lg:flex-row mt-20 justify-between lg:pl-12 xl:pl-20 relative max-w-[1300px] flex-1'>
             <div className="flex flex-col justify-evenly mb-13">
@@ -31,7 +40,10 @@ const Hero = () => {
                         <div> absolute monitoring precision.</div>
                     </div>
                 </div>
-                <div className="bg-[#301751] py-2 px-5 rounded-full w-fit text-white font-semibold mt-4">Get Started</div>
+                <div 
+                className="bg-[#301751] py-2 px-5 rounded-full w-fit text-white font-semibold mt-4 cursor-pointer"
+                onClick={() => router.push("/signin")}
+                >Get Started</div>
             </div>
             <div className="flex-1 min-h-[250px]"></div>
             {
