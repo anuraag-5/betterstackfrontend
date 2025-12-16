@@ -4,7 +4,7 @@ import { PageView, TotalViews, UniqueUsers } from "@/components/PagesTable";
 
 export const createWebsite = async (domain: string, about: string, userId: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/website", {
+        const res = await axios.post("http://localhost:3001/api/website", {
             user_id: userId,
             url: domain,
             about
@@ -33,7 +33,7 @@ export const createWebsite = async (domain: string, about: string, userId: strin
 
 export const getWebsiteHourlyViews = async (website: string, userId: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/website/hourly", {
+        const res = await axios.post("http://localhost:3001/api/website/hourly", {
             user_id: userId,
             website,
             hour: "24 hour"
@@ -47,7 +47,7 @@ export const getWebsiteHourlyViews = async (website: string, userId: string) => 
 
 export const getWebsiteDailyViews = async (website: string, userId: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/website/daily", {
+        const res = await axios.post("http://localhost:3001/api/website/daily", {
             user_id: userId,
             website,
             day: "30 day"
@@ -61,7 +61,7 @@ export const getWebsiteDailyViews = async (website: string, userId: string) => {
 
 export const getWebsiteLastHourViews = async (website: string, userId: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/website/last_hour", {
+        const res = await axios.post("http://localhost:3001/api/website/last_hour", {
             user_id: userId,
             website
         });
@@ -74,7 +74,7 @@ export const getWebsiteLastHourViews = async (website: string, userId: string) =
 
 export const getViewsPerPage = async (website: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/get_total_views_per_page", {
+        const res = await axios.post("http://localhost:3001/api/get_total_views_per_page", {
             website
         });
 
@@ -86,7 +86,7 @@ export const getViewsPerPage = async (website: string) => {
 
 export const getTotalUniqueUsers = async (website: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/get_total_unique_users", {
+        const res = await axios.post("http://localhost:3001/api/get_total_unique_users", {
             website
         });
 
@@ -98,7 +98,7 @@ export const getTotalUniqueUsers = async (website: string) => {
 
 export const getTotalViews = async (website: string) => {
     try {
-        const res = await axios.post("http://192.168.1.5:3001/api/get_total_views", {
+        const res = await axios.post("http://localhost:3001/api/get_total_views", {
             website
         });
 
