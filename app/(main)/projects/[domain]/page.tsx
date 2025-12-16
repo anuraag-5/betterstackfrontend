@@ -16,6 +16,7 @@ import {
   htmlScript,
   MinuteView,
   nextJsScript,
+  regions,
 } from "@/lib/types";
 import {
   getWebsiteDailyViews,
@@ -34,6 +35,8 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const router = useRouter();
   const domainName = use(params).domain;
   const website = websites!.filter((w) => w.domain === domainName);
+
+  console.log(regions);
 
   const [selectedTabType, setSelectTabType] = useState("analysis");
   const [selectedGraphType, setSelectedGraphType] = useState<GraphType>(

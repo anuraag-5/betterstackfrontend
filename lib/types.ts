@@ -73,3 +73,5 @@ export const cards = [{
   subTitle: ["Track your average response time", "with pinpoint accuracy.", "Detect slowdowns."],
   iconUrl: "/images/time.svg"
 }]
+
+export const regions = process.env.NEXT_PUBLIC_REGIONS?.split(",");
