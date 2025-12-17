@@ -36,8 +36,6 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const domainName = use(params).domain;
   const website = websites!.filter((w) => w.domain === domainName);
 
-  console.log(regions);
-
   const [selectedTabType, setSelectTabType] = useState("analysis");
   const [selectedGraphType, setSelectedGraphType] = useState<GraphType>(
     GraphType.LAST_HOUR
