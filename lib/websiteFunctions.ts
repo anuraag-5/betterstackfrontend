@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DailyView, HourlyView, MinuteView } from "./types";
-import { PageView, TotalViews, UniqueUsers } from "@/components/PagesTable";
+import { AvgRespTime, PageView, TotalViews, UniqueUsers, UptimePercentage } from "@/components/PagesTable";
 
 export const createWebsite = async (domain: string, about: string, userId: string) => {
     try {
@@ -103,6 +103,30 @@ export const getTotalViews = async (website: string) => {
         });
 
         return (await res.data) as { data: TotalViews | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
+export const getAvgRespTime = async (website: string) => {
+    try {
+        const res = await axios.post("http://localhost:3001/api/get_avg_resp", {
+            website
+        });
+
+        return (await res.data) as { data: AvgRespTime | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
+export const getUptimePercentage = async (website: string) => {
+    try {
+        const res = await axios.post("http://localhost:3001/api/get_uptime_percentage", {
+            website
+        });
+
+        return (await res.data) as { data: UptimePercentage | null, success: boolean };
     } catch (_) {
         return { data: null, success: false }
     }

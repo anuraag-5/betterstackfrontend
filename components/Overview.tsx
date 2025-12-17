@@ -2,18 +2,26 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getTotalUniqueUsers, getTotalViews } from "@/lib/websiteFunctions";
+import { getAvgRespTime, getTotalUniqueUsers, getTotalViews, getUptimePercentage } from "@/lib/websiteFunctions";
 
 const Overview = ({ domain }: { domain: string }) => {
   const [ totalViews, setTotalViews ] = useState(0);
   const [ uniqueUsers, setUniqueUsers ] = useState(0);
+  const [ avgRespTime, setAvgRespTime ] = useState(0);
+  const [ uptimePercent, setUptimePercent ] = useState(0);
   useEffect(() => {
     const getAllData = async () => {
         const uniqueUsers = await getTotalUniqueUsers(domain);
         const totalViews = await getTotalViews(domain);
+        const avgRespTime = await getAvgRespTime(domain);
+        const uptimePercent = await getUptimePercentage(domain);
 
         setUniqueUsers(uniqueUsers.data!.unique_users);
         setTotalViews(totalViews.data!.total_views);
+        setAvgRespTime(avgRespTime.data!.avg);
+        setUptimePercent(uptimePercent.data!.uptime_percent);
+        console.log(avgRespTime.data!.avg);
+        console.log(uptimePercent.data!.uptime_percent);
     }
     getAllData()
   }, [ domain ])

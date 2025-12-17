@@ -14,6 +14,14 @@ export type TotalViews = {
   total_views: number;
 }
 
+export type AvgRespTime = {
+  avg: number
+}
+
+export type UptimePercentage = {
+  uptime_percent: number
+}
+
 const PagesTable = ( { domain } : { domain: string }) => {
   const [ data, setData ] = useState<PageView[]>([]);
   const [ loading, setLoading ] = useState(true);
