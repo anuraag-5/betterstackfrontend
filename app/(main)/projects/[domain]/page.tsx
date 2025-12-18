@@ -67,7 +67,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
     getGraphData();
   }, [user, domainName]);
   return (
-    <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4 max-h-full">
+    <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4">
       <div className="text-[#bfbfbf] flex justify-between items-center">
         <div className="flex">
           <div className="hidden md:block">
@@ -84,7 +84,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
           Add +
         </div>
       </div>
-      <div className="flex-1 flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-12 pb-5 overflow-y-scroll">
+      <div className="flex-1 h-full flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-12 pb-5 overflow-y-scroll">
         <div className="flex gap-4 justify-around md:justify-start">
           <div
             className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer rounded-md"
@@ -97,7 +97,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                 layoutId="background"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               ></motion.div>
             ) : null}
           </div>
@@ -112,7 +112,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                 layoutId="background"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               ></motion.div>
             ) : null}
           </div>
@@ -127,7 +127,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
                 layoutId="background"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               ></motion.div>
             ) : null}
           </div>
@@ -135,7 +135,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
         <div
           className={
             "flex-1 flex justify-center md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" +
-            (selectedTabType === "analysis" ? "" : " max-h-[1000px]") +
+            (selectedTabType === "analysis" ? "" : " max-h-[1200px]") +
             (selectedTabType === "overview" ? " md:justify-start" : "")
           }
         >

@@ -7,7 +7,7 @@ export const signUpUser = async (
 ) => {
   try {
     const res = await axios.post(
-      "http://localhost:3001/api/user/signup",
+      process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/user/signup",
       {
         username,
         password,
@@ -34,7 +34,7 @@ export const signUpUser = async (
 export const signInUser = async (email: string, password: string) => {
   try {
     const res = await axios.post(
-      "http://localhost:3001/api/user/signin",
+      process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/user/signin",
       {
         username: email,
         password,
@@ -58,7 +58,7 @@ export const signInUser = async (email: string, password: string) => {
 
 export const signOutUser = async () => {
   await axios.post(
-    "http://localhost:3001/api/user/logout",
+    process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/user/logout",
     {},
     {
       withCredentials: true,

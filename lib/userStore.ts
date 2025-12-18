@@ -33,7 +33,7 @@ type UserStore = {
 };
 
 const getActualUser = async (jwt: string) => {
-  const res = await axios.get("http://localhost:3001/api/get_user", {
+  const res = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/get_user", {
     headers: {
       jwt,
     },
@@ -50,7 +50,7 @@ const getActualUser = async (jwt: string) => {
 };
 
 const getActualWebsites = async (jwt: string) => {
-  const res = await axios.get("http://localhost:3001/api/user/get_all_websites", {
+  const res = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/user/get_all_websites", {
     headers: {
       jwt
     }
