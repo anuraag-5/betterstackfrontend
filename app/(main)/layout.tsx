@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/lib/userStore";
 import { ReactNode, useEffect, useState } from "react";
+import NavbarMobile from "@/components/NavbarMobile";
 
 const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
@@ -41,7 +42,8 @@ const ProjectsLayout = ({ children }: { children: ReactNode }) => {
   }, [router, getUser, getWebsites, setUser, setWebsites]);
 
   return (
-    <section className="h-screen w-screen bg-black py-3 flex overflow-y-hidden">
+    <section className="h-screen w-screen bg-black py-3 md:flex overflow-y-hidden">
+      <NavbarMobile />
       <Navbar />
       {loading ? (
         <div className="flex-1 flex flex-col justify-between pt-6 pl-4">

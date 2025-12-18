@@ -67,7 +67,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
     getGraphData();
   }, [user, domainName]);
   return (
-    <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4">
+    <div className="flex-1 flex flex-col justify-between pt-6 md:pl-4 max-h-full">
       <div className="text-[#bfbfbf] flex justify-between items-center">
         <div className="flex">
           <div className="hidden md:block">

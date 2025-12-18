@@ -34,6 +34,37 @@ const Overview = ({ domain }: { domain: string }) => {
     <div className="w-fit">
       <div>
         <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">
+          Analytics :
+        </div>
+        <div className="flex flex-col xl:flex-row my-7 gap-8">
+          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
+            <Image
+              src="/images/time-white.svg"
+              alt=""
+              width={40}
+              height={40}
+            />
+            <div className="text-md md:text-lg pt-3">Avg Rsp Time</div>
+            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">
+              { Math.round(avgRespTime) } ms
+            </div>
+          </div>
+          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
+            <Image
+              src="/images/unique-views.svg"
+              alt=""
+              width={46}
+              height={46}
+            />
+            <div className="text-md md:text-lg mt-2">Uptime</div>
+            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">
+              { uptimePercent }%
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">
           Popularity :
         </div>
         <div className="flex flex-col xl:flex-row my-7 gap-8">
@@ -59,37 +90,6 @@ const Overview = ({ domain }: { domain: string }) => {
             <div className="text-md md:text-lg mt-2">Unique Users</div>
             <div className="text-xl md:text-3xl text-[#C499FF] mt-2">
               { uniqueUsers }
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#999999] inline-block text-xl">
-          Analytics :
-        </div>
-        <div className="flex flex-col xl:flex-row my-7 gap-8">
-          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
-            <Image
-              src="/images/time-white.svg"
-              alt=""
-              width={40}
-              height={40}
-            />
-            <div className="text-md md:text-lg pt-3">Avg Rsp Time</div>
-            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">
-              { Math.round(avgRespTime) } ms
-            </div>
-          </div>
-          <div className="min-w-[275px] md:min-w-[300px] flex flex-col items-center border-2 border-[#767676] rounded-2xl py-5">
-            <Image
-              src="/images/unique-views.svg"
-              alt=""
-              width={46}
-              height={46}
-            />
-            <div className="text-md md:text-lg mt-2">Unique Users</div>
-            <div className="text-xl md:text-3xl text-[#C499FF] mt-2">
-              { uptimePercent }%
             </div>
           </div>
         </div>
