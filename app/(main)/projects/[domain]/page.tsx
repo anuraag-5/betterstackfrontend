@@ -135,7 +135,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
         <div
           className={
             "flex-1 flex justify-center md:bg-[#181818] rounded-4xl pt-10 md:pb-8 px-3 md:px-12" +
-            (selectedTabType === "analysis" ? "" : " max-h-[600px]") +
+            (selectedTabType === "analysis" ? "" : " max-h-[1000px]") +
             (selectedTabType === "overview" ? " md:justify-start" : "")
           }
         >
