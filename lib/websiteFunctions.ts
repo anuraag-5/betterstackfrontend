@@ -120,10 +120,36 @@ export const getAvgRespTime = async (website: string) => {
     }
 }
 
+export const getAvgRespTimeByRegion = async (website: string, region: string) => {
+    try {
+        const res = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/get_avg_resp_region", {
+            website,
+            region
+        });
+
+        return (await res.data) as { data: AvgRespTime | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
 export const getUptimePercentage = async (website: string) => {
     try {
         const res = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/get_uptime_percentage", {
             website
+        });
+
+        return (await res.data) as { data: UptimePercentage | null, success: boolean };
+    } catch (_) {
+        return { data: null, success: false }
+    }
+}
+
+export const getUptimePercentageByRegion = async (website: string, region: string) => {
+    try {
+        const res = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/get_uptime_percentage_region", {
+            website,
+            region
         });
 
         return (await res.data) as { data: UptimePercentage | null, success: boolean };

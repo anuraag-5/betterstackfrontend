@@ -61,7 +61,7 @@ const NavbarMobile = () => {
           <motion.div className="h-[90%] flex flex-col justify-evenly">
             <motion.div className="flex flex-col gap-4">
               <motion.div
-                className="text-3xl cursor-pointer"
+                className="text-3xl cursor-pointer font-bold"
                 onClick={() => {
                   setOpen(false);
                   router.push("/projects");
@@ -70,7 +70,7 @@ const NavbarMobile = () => {
                 Projects
               </motion.div>
               <motion.div
-                className="text-3xl cursor-pointer"
+                className="text-3xl cursor-pointer font-bold"
                 onClick={() => {
                   setOpen(false);
                   router.push("/settings");
@@ -87,7 +87,7 @@ const NavbarMobile = () => {
                   <div className="text-[8px] text-[#A0A0A0]">{user?.email}</div>
                 </div>
               </div>
-              <div className="flex gap-3 cursor-pointer" onClick={handleLogout}>
+              <div className="flex gap-3 cursor-pointer font-semibold" onClick={handleLogout}>
                 <Image
                   src="/images/logout-icon.png"
                   alt=""

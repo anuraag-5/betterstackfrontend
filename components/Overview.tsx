@@ -1,18 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import { regions } from "@/lib/types";
 import { useEffect, useState } from "react";
 import {
   getAvgRespTime,
+  getAvgRespTimeByRegion,
   getTotalUniqueUsers,
   getTotalViews,
   getUptimePercentage,
+  getUptimePercentageByRegion,
 } from "@/lib/websiteFunctions";
 
 const Overview = ({ domain }: { domain: string }) => {
   const [totalViews, setTotalViews] = useState(0);
-  const [uniqueUsers, setUniqueUsers] = useState(0);
   const [avgRespTime, setAvgRespTime] = useState(0);
+  const [uniqueUsers, setUniqueUsers] = useState(0);
   const [uptimePercent, setUptimePercent] = useState(0);
   useEffect(() => {
     const getAllData = async () => {
@@ -20,13 +23,17 @@ const Overview = ({ domain }: { domain: string }) => {
       const totalViews = await getTotalViews(domain);
       const avgRespTime = await getAvgRespTime(domain);
       const uptimePercent = await getUptimePercentage(domain);
+      regions?.forEach(async region => {
+        const avgRespByReg = await getAvgRespTimeByRegion(domain, region);
+        const uptimeByReg = await getUptimePercentageByRegion(domain, region);
+        console.log(avgRespByReg.data);
+        console.log(uptimeByReg.data);
+      });
 
       setUniqueUsers(uniqueUsers.data!.unique_users);
       setTotalViews(totalViews.data!.total_views);
       setAvgRespTime(avgRespTime.data!.avg);
       setUptimePercent(uptimePercent.data!.uptime_percent);
-      console.log(avgRespTime.data!.avg);
-      console.log(uptimePercent.data!.uptime_percent);
     };
     getAllData();
   }, [domain]);
