@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserStore } from "@/lib/userStore";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const { user } = useUserStore();
   const [open, setOpen] = useState(true);
   const [width, setWidth] = useState(768);
   const [currentTab, setCurrentTab] = useState(usePathname());
@@ -96,8 +98,8 @@ const Navbar = () => {
             <div className="flex gap-3 items-center w-full pr-6 lg:pr-8">
                 <div className="p-5 lg:p-6 w-fit rounded-full bg-blue-800"></div>
                 <div className="flex flex-col">
-                    <div className="text-[10px] lg:text-[12px]">Anurag Bhoite</div>
-                    <div className="text-[8px] lg:text-[10px] text-[#A0A0A0]">anuraaag51@gmail.com</div>
+                    <div className="text-[10px] lg:text-[12px]">{user?.name}</div>
+                    <div className="text-[8px] lg:text-[10px] text-[#A0A0A0]">{user?.email}</div>
                 </div>
             </div>
             <div className="flex gap-3 py-3 px-4 cursor-pointer"
