@@ -45,13 +45,7 @@ const Navbar = () => {
               className="flex gap-3 cursor-pointer"
               onClick={() => router.push("/")}
               >
-                <Image
-                  src="/images/brand-logo.png"
-                  alt=""
-                  width={ width > 1024 ? 27 : 22 }
-                  height={ width > 1024 ? 27 : 18 }
-                />
-                <div className="text-lg lg:text-xl font-semibold">Nexus</div>
+                <div className="text-md lg:text-lg font-semibold border-2 lg:border-3 border-white px-3 py-0 rounded-full">Nexus</div>
               </div>
               <div className="cursor-pointer" onClick={handleMenuToggle}>
                 <Image src="/images/menu.png" alt="" width={ width > 1024 ? 25 : 20 } height={ width > 1024 ? 25 : 20 } />
