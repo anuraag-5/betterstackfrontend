@@ -45,6 +45,14 @@ export type DailyView = {
   views: number;
 }
 
+export type Analytics = {
+  analyticByRegions: {
+    avgResp: number,
+    uptime: number,
+    region: string
+  }[]
+}
+
 export const nextJsScript = `import Script from "next/script";
 
 <Script
