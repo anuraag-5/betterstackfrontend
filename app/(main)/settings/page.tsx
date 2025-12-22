@@ -1,5 +1,6 @@
 "use client";
 
+import GeneralUpdate from "@/components/GeneralUpdate";
 import * as motion from "motion/react-client";
 import { useState } from "react";
 
@@ -41,7 +42,7 @@ const SettingsPage = () => {
             }
           </div>
         </div>
-        <div></div>
+        <GeneralUpdate />
       </div>
     </div>
   )
