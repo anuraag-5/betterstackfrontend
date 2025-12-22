@@ -93,45 +93,51 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
             onClick={() => handleTabChange("analysis")}
           >
             Analysis
-            {selectedTabType === "analysis" ? (
-              <motion.div
-                className="absolute inset-0 bg-white rounded-md"
-                layoutId="background"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
-            ) : null}
+            {
+              selectedTabType === "analysis" ? (
+                <motion.div
+                  className="absolute inset-0 bg-white rounded-md"
+                  layoutId="background"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.1 }}
+                  transition={{ duration: 0.2 }}
+                ></motion.div>
+              ) : null
+            }
           </div>
           <div
             className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer"
             onClick={() => handleTabChange("overview")}
           >
             Overview
-            {selectedTabType === "overview" ? (
-              <motion.div
-                className="absolute inset-0 bg-white rounded-md"
-                layoutId="background"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
-            ) : null}
+            {
+              selectedTabType === "overview" ? (
+                <motion.div
+                  className="absolute inset-0 bg-white rounded-md"
+                  layoutId="background"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.1 }}
+                  transition={{ duration: 0.2 }}
+                ></motion.div>
+              ) : null
+            }
           </div>
           <div
             className="px-5 py-2 text-[12px] md:text-[14px] relative cursor-pointer"
             onClick={() => handleTabChange("issues")}
           >
             Issues
-            {selectedTabType === "issues" ? (
-              <motion.div
-                className="absolute inset-0 bg-white rounded-md"
-                layoutId="background"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.1 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
-            ) : null}
+            {
+              selectedTabType === "issues" ? (
+                <motion.div
+                  className="absolute inset-0 bg-white rounded-md"
+                  layoutId="background"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.1 }}
+                  transition={{ duration: 0.2 }}
+                ></motion.div>
+              ) : null
+            }
           </div>
         </div>
         <div
