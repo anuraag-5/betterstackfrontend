@@ -15,8 +15,7 @@ import {
   HourlyView,
   htmlScript,
   MinuteView,
-  nextJsScript,
-  regions,
+  nextJsScript
 } from "@/lib/types";
 import {
   getWebsiteDailyViews,

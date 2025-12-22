@@ -61,7 +61,7 @@ const NavbarMobile = () => {
           <motion.div className="h-[90%] flex flex-col justify-evenly">
             <motion.div className="flex flex-col gap-4">
               <motion.div
-                className="text-3xl cursor-pointer font-bold"
+                className="text-3xl cursor-pointer font-semibold"
                 onClick={() => {
                   setOpen(false);
                   router.push("/projects");
@@ -70,7 +70,7 @@ const NavbarMobile = () => {
                 Projects
               </motion.div>
               <motion.div
-                className="text-3xl cursor-pointer font-bold"
+                className="text-3xl cursor-pointer font-semibold"
                 onClick={() => {
                   setOpen(false);
                   router.push("/settings");

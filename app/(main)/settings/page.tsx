@@ -4,7 +4,7 @@ import * as motion from "motion/react-client";
 import { useState } from "react";
 
 const SettingsPage = () => {
-  const [ currentTab, setCurrentTab ] = useState("general");
+  const [currentTab, setCurrentTab] = useState("general");
   return (
     <div className='flex-1 flex flex-col md:pt-6 md:pl-4 p-2'>
       <div>Settings</div>
