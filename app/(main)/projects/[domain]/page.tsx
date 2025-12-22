@@ -55,9 +55,11 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
 
   useEffect(() => {
     const getGraphData = async () => {
-      const lastHourViews = await getWebsiteLastHourViews(domainName, user!.id);
-      const hourlyViews = await getWebsiteHourlyViews(domainName, user!.id);
-      const dailyViews = await getWebsiteDailyViews(domainName, user!.id);
+      const [ lastHourViews, hourlyViews, dailyViews ] = await Promise.all([
+        getWebsiteLastHourViews(domainName, user!.id),
+        getWebsiteHourlyViews(domainName, user!.id),
+        getWebsiteDailyViews(domainName, user!.id)
+      ]);
 
       setLastHourData(lastHourViews.data!);
       setLastDayData(hourlyViews.data!);

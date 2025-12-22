@@ -53,7 +53,6 @@ const Overview = ({ domain }: { domain: string }) => {
         }) || []
       );
 
-      console.log(analyticByRegionsData);
       setUniqueUsers(uniqueUsers.data?.unique_users || 0);
       setTotalViews(totalViews.data?.total_views || 0);
       setAvgRespTime(avgRespTime.data?.avg || 0);
