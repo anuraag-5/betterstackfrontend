@@ -1,6 +1,7 @@
 "use client";
 
 import GeneralUpdate from "@/components/GeneralUpdate";
+import Issues from "@/components/Issues";
 import * as motion from "motion/react-client";
 import { useState } from "react";
 
@@ -42,7 +43,9 @@ const SettingsPage = () => {
             }
           </div>
         </div>
-        <GeneralUpdate />
+        {
+          currentTab === "general" ? <GeneralUpdate /> : <Issues />
+        }
       </div>
     </div>
   )

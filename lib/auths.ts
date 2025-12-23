@@ -65,3 +65,40 @@ export const signOutUser = async () => {
     }
   );
 };
+
+export const updateEmail = async (new_email: string, user_id: string) => {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/update_email",
+      {
+        new_email,
+        user_id
+      }
+    );
+
+    const data = (await res.data) as { success: boolean };
+
+    return data;
+  } catch (_) {
+    return {success: false};
+  }
+};
+
+export const updatePassword = async (old_password: string, new_password: string, user_id: string) => {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/update_password",
+      {
+        new_password,
+        user_id,
+        old_password
+      }
+    );
+
+    const data = (await res.data) as {success: boolean};
+
+    return data;
+  } catch (_) {
+    return {success: false};
+  }
+};

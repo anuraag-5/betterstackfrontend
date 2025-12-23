@@ -1,5 +1,6 @@
 "use client";
 
+import * as motion from "motion/react-client";
 import Star from "./Star";
 import FAQsCards from "./FAQsCards";
 import { kapakanaFont } from "@/app/fonts/fonts";
@@ -8,7 +9,19 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen w-full bg-linear-to-b from-[#D9D9D9] to-[#513D6A] flex flex-col items-center justify-evenly gap-12 pt-5">
-      <div className="flex flex-col items-center gap-10">
+      <motion.div 
+      className="flex flex-col items-center gap-10"
+      initial={{
+        y: 40,
+      }}
+      whileInView={{
+        y: 0,
+      }}
+      transition={{
+        duration: 0.35,
+      }}
+      viewport={{ once: true }}
+      >
         <div className="flex items-center font-bold gap-3 py-[4px] px-4 bg-[#301751] text-[#C499FF] text-[11px] w-fit rounded-full">
           <Star />
           FAQ
@@ -30,7 +43,7 @@ const FAQ = () => {
             <div>platform helps you monitor data.</div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <FAQsCards />
     </div>
   );
