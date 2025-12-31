@@ -6,14 +6,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/lib/userStore";
 import { useWidth } from "@/hooks/useWidth";
+import { useClerk } from "@clerk/nextjs";
 
 const NavbarMobile = () => {
   const width = useWidth();
   const { user } = useUserStore();
+  const { signOut } = useClerk();
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut();
     localStorage.removeItem("jwt");
     router.replace("/signup");
   };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/lib/userStore";
+import { useClerk } from "@clerk/nextjs";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -13,22 +14,25 @@ const Navbar = () => {
   const [width, setWidth] = useState(768);
   const [currentTab, setCurrentTab] = useState(usePathname());
   const router = useRouter();
+
+  const { signOut } = useClerk();
   const handleMenuToggle = () => setOpen((initialValue) => !initialValue);
   const handleTabChange = (tab: string) => {
-    setCurrentTab(tab)
+    setCurrentTab(tab);
     router.push(tab);
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut();
     localStorage.removeItem("jwt");
     router.replace("/signup");
-  } 
+  };
   useEffect(() => {
     const findWidth = () => setWidth(window.innerWidth);
-    findWidth()
-    window.addEventListener("resize", findWidth)
+    findWidth();
+    window.addEventListener("resize", findWidth);
 
     return () => window.removeEventListener("resize", findWidth);
-  }, [])
+  }, []);
   return (
     <>
       {open ? (
@@ -41,14 +45,21 @@ const Navbar = () => {
         >
           <div className="flex flex-col h-[220px] justify-between">
             <div className="flex justify-between items-center">
-              <div 
-              className="flex gap-3 cursor-pointer"
-              onClick={() => router.push("/")}
+              <div
+                className="flex gap-3 cursor-pointer"
+                onClick={() => router.push("/")}
               >
-                <div className="text-md lg:text-lg font-semibold border-2 lg:border-3 border-white px-3 py-0 rounded-full">Nexus</div>
+                <div className="text-md lg:text-lg font-semibold border-2 lg:border-3 border-white px-3 py-0 rounded-full">
+                  Nexus
+                </div>
               </div>
               <div className="cursor-pointer" onClick={handleMenuToggle}>
-                <Image src="/images/menu.png" alt="" width={ width > 1024 ? 25 : 20 } height={ width > 1024 ? 25 : 20 } />
+                <Image
+                  src="/images/menu.png"
+                  alt=""
+                  width={width > 1024 ? 25 : 20}
+                  height={width > 1024 ? 25 : 20}
+                />
               </div>
             </div>
             <div className="flex flex-col gap-3">
@@ -64,25 +75,25 @@ const Navbar = () => {
                 <Image
                   src="/images/overview-icon-black.png"
                   alt=""
-                  width={ width > 1024 ? 25 : 20 }
-                  height={ width > 1024 ? 25 : 20 }
+                  width={width > 1024 ? 25 : 20}
+                  height={width > 1024 ? 25 : 20}
                 />
                 <div className="text-[14px] lg:text-[16px]">Projects</div>
               </div>
-              <div 
-              className={
-                (currentTab == "/settings"
-                  ? "bg-[#333333] "
-                  : "bg-transparent ") +
-                " rounded-lg flex w-full flex-start gap-3 py-3 px-4 cursor-pointer"
-              }
-              onClick={() => handleTabChange("/settings")}
+              <div
+                className={
+                  (currentTab == "/settings"
+                    ? "bg-[#333333] "
+                    : "bg-transparent ") +
+                  " rounded-lg flex w-full flex-start gap-3 py-3 px-4 cursor-pointer"
+                }
+                onClick={() => handleTabChange("/settings")}
               >
                 <Image
                   src="/images/settings-icon-white.svg"
                   alt=""
-                  width={ width > 1024 ? 25 : 20 }
-                  height={ width > 1024 ? 25 : 20 }
+                  width={width > 1024 ? 25 : 20}
+                  height={width > 1024 ? 25 : 20}
                 />
                 <div className="text-[14px] lg:text-[16px]">Settings</div>
               </div>
@@ -90,22 +101,25 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col gap-3 ">
             <div className="flex gap-3 items-center w-full pr-6 lg:pr-8">
-                <div className="p-5 lg:p-6 w-fit rounded-full bg-blue-800"></div>
-                <div className="flex flex-col">
-                    <div className="text-[10px] lg:text-[12px]">{user?.name}</div>
-                    <div className="text-[8px] lg:text-[10px] text-[#A0A0A0]">{user?.email}</div>
+              <div className="p-5 lg:p-6 w-fit rounded-full bg-blue-800"></div>
+              <div className="flex flex-col">
+                <div className="text-[10px] lg:text-[12px]">{user?.name}</div>
+                <div className="text-[8px] lg:text-[10px] text-[#A0A0A0]">
+                  {user?.email}
                 </div>
+              </div>
             </div>
-            <div className="flex gap-3 py-3 px-4 cursor-pointer"
-            onClick={handleLogout}
+            <div
+              className="flex gap-3 py-3 px-4 cursor-pointer"
+              onClick={handleLogout}
             >
-                <Image 
+              <Image
                 src="/images/logout-icon.png"
                 alt=""
-                width={ width > 1024 ? 25 : 20 }
-                height={ width > 1024 ? 25 : 20 }
-                />
-                <div>Logout</div>
+                width={width > 1024 ? 25 : 20}
+                height={width > 1024 ? 25 : 20}
+              />
+              <div>Logout</div>
             </div>
           </div>
         </motion.div>
@@ -120,14 +134,13 @@ const Navbar = () => {
           <div className="flex flex-col h-[220px] justify-between items-center">
             <div className="cursor-pointer w-fit" onClick={handleMenuToggle}>
               <Image src="/images/menu.png" alt="" width={27} height={27} />
-            </div>            
+            </div>
             <div className="flex flex-col gap-3">
               <div
                 className={
                   (currentTab == "/projects"
                     ? "bg-[#333333] "
-                    : "bg-transparent ") +
-                  " rounded-md p-3 cursor-pointer"
+                    : "bg-transparent ") + " rounded-md p-3 cursor-pointer"
                 }
                 onClick={() => handleTabChange("/projects")}
               >
@@ -138,14 +151,13 @@ const Navbar = () => {
                   height={25}
                 />
               </div>
-              <div 
-              className={
-                (currentTab == "/settings"
-                  ? "bg-[#333333] "
-                  : "bg-transparent ") +
-                " rounded-md p-3 cursor-pointer"
-              }
-              onClick={() => handleTabChange("/settings")}
+              <div
+                className={
+                  (currentTab == "/settings"
+                    ? "bg-[#333333] "
+                    : "bg-transparent ") + " rounded-md p-3 cursor-pointer"
+                }
+                onClick={() => handleTabChange("/settings")}
               >
                 <Image
                   src="/images/settings-icon-white.svg"
@@ -158,14 +170,14 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col gap-3 items-center">
             <div className="p-5 w-fit rounded-full bg-blue-800"></div>
-              <Image 
+            <Image
               src="/images/logout-icon.png"
               alt=""
               width={25}
               height={25}
               className="cursor-pointer"
               onClick={handleLogout}
-              />
+            />
           </div>
         </motion.div>
       )}

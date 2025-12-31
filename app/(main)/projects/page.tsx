@@ -16,9 +16,18 @@ const YourProjects = () => {
   const handleProjectClick = (website: string) => {
     router.push(`/projects/${website}`);
   };
+  const handleAddClicked = () => router.push("/projects/add");
   return (
     <div className="flex-1 flex flex-col justify-between p-2 md:pt-6 md:pb-0 md:pl-4 md:pr-0">
-      <div className="text-[#bfbfbf]">Your Projects</div>
+      <div className="text-[#bfbfbf] flex justify-between items-center">
+        <div>Your Projects</div>
+        <div
+          className="cursor-pointer mr-5 md:mr-7 text-[12px] md:text-[14px] text-black py-1 px-2 md:py-2 md:px-4 bg-[#C499FF] rounded-full"
+          onClick={handleAddClicked}
+        >
+          Add +
+        </div>
+      </div>
       <div className="flex-1 bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] p-6 grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-y-16 place-items-center md:place-items-start overflow-y-auto">
         {websites?.map((w, i) => (
           <div
