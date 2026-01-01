@@ -15,10 +15,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import GoogleAuthButton from "./GoogleAuthButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Spinner from "./Spinner";
 
 export default function Signin() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     defaultValues: {
       email: "",
@@ -29,6 +31,7 @@ export default function Signin() {
     },
     onSubmit: async ({ value }) => {
       try {
+        setLoading(true);
         const { email, password } = value;
         console.log(value);
         const signin = await signInUser(email, password);
@@ -55,6 +58,8 @@ export default function Signin() {
           title: "Server Error",
           description: errorMessage,
         });
+      } finally {
+        setLoading(false);
       }
     },
   });
@@ -170,13 +175,13 @@ export default function Signin() {
                   }
                   type="submit"
                 >
-                  Sign in
+                  {loading ? <Spinner /> : "Sign In"}
                 </Button>
               </div>
             </form>
           </div>
         </div>
-        <GoogleAuthButton tab="signin"/>
+        <GoogleAuthButton tab="signin" />
       </div>
     </section>
   );

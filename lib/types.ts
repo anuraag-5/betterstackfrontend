@@ -56,14 +56,14 @@ export type Analytics = {
 export const nextJsScript = `import Script from "next/script";
 
 <Script
-  src="http://localhost:3001/snippet"
+  src="https://api.nexus.speeedops.com/snippet"
   strategy="afterInteractive"
 />
 `;
 
 export const htmlScript = `
 <script
-src="http://localhost:3001/snippet"
+src="https://api.nexus.speeedops.com/snippet"
 >
 </script>
 `;

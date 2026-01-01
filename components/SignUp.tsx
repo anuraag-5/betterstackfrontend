@@ -15,9 +15,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import GoogleAuthButton from "./GoogleAuthButton";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 export default function SignUp() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm({
     defaultValues: {
@@ -30,6 +33,7 @@ export default function SignUp() {
     },
     onSubmit: async ({ value }) => {
       try {
+        setLoading(true);
         const { name, email, password } = value;
 
         const res = await signUpUser(email, password, name);
@@ -52,6 +56,8 @@ export default function SignUp() {
           description:
             error instanceof Error ? error.message : "Something went wrong",
         });
+      } finally {
+        setLoading(false);
       }
     },
   });
@@ -169,14 +175,14 @@ export default function SignUp() {
                     " text-[20px] px-8 bg-[#C499FF] w-fit rounded-full font-semibold cursor-pointer text-black"
                   }
                 >
-                  Sign Up
+                  {loading ? <Spinner /> : "Sign Up"}
                 </Button>
               </div>
             </form>
           </div>
         </div>
 
-        <GoogleAuthButton tab="signup"/>
+        <GoogleAuthButton tab="signup" />
       </div>
     </section>
   );
