@@ -122,7 +122,7 @@ const Hero = () => {
               src="/images/hero-image-main.png"
               alt=""
               fill
-              className="object-contain translate-y-60"
+              className="object-contain translate-y-60 pointer-events-none"
               priority
             />
           </motion.div>
