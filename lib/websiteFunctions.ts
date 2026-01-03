@@ -157,3 +157,15 @@ export const getUptimePercentageByRegion = async (website: string, region: strin
         return { data: null, success: false }
     }
 }
+
+export const getWebsiteStatus = async (website: string, user_id: string) => {
+    try {
+        const res = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL! + "/api/get_status", {
+            website,
+            user_id
+        });
+        return (await res.data) as { status: string };
+    } catch (_) {
+        return { status: "Unknown" }
+    }
+}

@@ -21,6 +21,7 @@ import {
   getWebsiteDailyViews,
   getWebsiteHourlyViews,
   getWebsiteLastHourViews,
+  getWebsiteStatus,
 } from "@/lib/websiteFunctions";
 
 enum GraphType {
@@ -40,6 +41,7 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
   const [selectedGraphType, setSelectedGraphType] = useState<GraphType>(
     GraphType.LAST_HOUR
   );
+  const [ status, setStatus ] = useState("Up");
   const [lastHourData, setLastHourData] = useState<MinuteView[]>([]);
   const [lastDayData, setLastDayData] = useState<HourlyView[]>([]);
   const [lastDailyData, setLastDailyData] = useState<DailyView[]>([]);
@@ -55,15 +57,17 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
 
   useEffect(() => {
     const getGraphData = async () => {
-      const [lastHourViews, hourlyViews, dailyViews] = await Promise.all([
+      const [lastHourViews, hourlyViews, dailyViews, status] = await Promise.all([
         getWebsiteLastHourViews(domainName, user!.id),
         getWebsiteHourlyViews(domainName, user!.id),
         getWebsiteDailyViews(domainName, user!.id),
+        getWebsiteStatus(domainName, user!.id)
       ]);
 
       setLastHourData(lastHourViews.data!);
       setLastDayData(hourlyViews.data!);
       setLastDailyData(dailyViews.data!);
+      setStatus(status.status);
     };
 
     getGraphData().finally(() => setLoading(false));
@@ -86,7 +90,19 @@ const Project = ({ params }: { params: Promise<{ domain: string }> }) => {
           Add +
         </div>
       </div>
-      <div className="flex-1 h-full flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-12 pb-5 overflow-y-scroll">
+      <div className="flex gap-3 mt-4 pl-2 md:pl-0">
+        <div className="text-lg text-[#C499FF]">Status: </div>
+        <div className="flex gap-2 items-center">
+          <div className="text-lg">{status}</div>
+          <Image 
+          src={status === "Up" ? "/images/tick-up.svg" : status === "Unknown" ? "/images/unknown.svg" : "/images/down.svg"}
+          alt=""
+          width={20}
+          height={20}
+          />
+        </div>
+      </div>
+      <div className="flex-1 h-full flex flex-col gap-5 bg-[#181818] md:bg-[#262626] mt-6 rounded-4xl md:rounded-tl-4xl md:rounded-bl-4xl md:rounded-tr-[0px] md:rounded-br-[0px] px-6 md:px-12 pt-11 pb-5 overflow-y-scroll">
         {!loading ? (
           <>
             <div className="flex gap-4 justify-around md:justify-start">
