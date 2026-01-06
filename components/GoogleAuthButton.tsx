@@ -40,7 +40,7 @@ export default function GoogleAuthButton({ tab }: { tab: string }) {
     };
 
     authenticate();
-  }, [isSignedIn, user]);
+  }, [isSignedIn, user, router]);
 
   return (
     <SignInButton mode="modal">

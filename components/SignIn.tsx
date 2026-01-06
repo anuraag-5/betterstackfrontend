@@ -181,7 +181,7 @@ export default function Signin() {
             </form>
           </div>
         </div>
-        <GoogleAuthButton tab="signin" />
+        {/* <GoogleAuthButton tab="signin" /> */}
       </div>
     </section>
   );

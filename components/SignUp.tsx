@@ -182,7 +182,7 @@ export default function SignUp() {
           </div>
         </div>
 
-        <GoogleAuthButton tab="signup" />
+        {/* <GoogleAuthButton tab="signup" /> */}
       </div>
     </section>
   );
